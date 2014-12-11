@@ -1,0 +1,1001 @@
+sum(D.UnitPrice*D.Quantity),CategoryID,CategoryName,OrderDate
+637.50,8,Seafood,1998-05-06
+129.00,4,"Dairy Products",1998-05-06
+473.48,2,Condiments,1998-05-06
+529.00,1,Beverages,1998-05-06
+44.00,6,Meat/Poultry,1998-05-06
+144.00,5,Grains/Cereals,1998-05-06
+683.00,3,Confections,1998-05-06
+175.44,7,Produce,1998-05-06
+910.00,4,"Dairy Products",1998-05-05
+2340.00,5,Grains/Cereals,1998-05-05
+1120.00,8,Seafood,1998-05-05
+1238.00,1,Beverages,1998-05-05
+1474.00,3,Confections,1998-05-05
+382.50,7,Produce,1998-05-05
+1372.00,1,Beverages,1998-05-04
+225.00,8,Seafood,1998-05-04
+336.00,2,Condiments,1998-05-04
+176.00,7,Produce,1998-05-04
+1295.00,1,Beverages,1998-05-01
+3242.00,6,Meat/Poultry,1998-05-01
+444.00,8,Seafood,1998-05-01
+2198.00,3,Confections,1998-05-01
+1770.00,1,Beverages,1998-04-30
+2150.00,8,Seafood,1998-04-30
+532.00,4,"Dairy Products",1998-04-30
+120.00,2,Condiments,1998-04-30
+360.00,6,Meat/Poultry,1998-04-30
+165.00,1,Beverages,1998-04-29
+1568.00,4,"Dairy Products",1998-04-29
+264.00,6,Meat/Poultry,1998-04-29
+76.00,2,Condiments,1998-04-29
+360.00,8,Seafood,1998-04-29
+84.00,3,Confections,1998-04-29
+900.00,1,Beverages,1998-04-28
+440.00,5,Grains/Cereals,1998-04-28
+1435.00,4,"Dairy Products",1998-04-28
+630.00,3,Confections,1998-04-28
+770.00,6,Meat/Poultry,1998-04-28
+1260.00,7,Produce,1998-04-28
+1420.00,1,Beverages,1998-04-27
+1820.00,8,Seafood,1998-04-27
+190.00,2,Condiments,1998-04-27
+450.00,5,Grains/Cereals,1998-04-27
+460.00,4,"Dairy Products",1998-04-27
+100.00,4,"Dairy Products",1998-04-24
+1218.00,3,Confections,1998-04-24
+472.50,1,Beverages,1998-04-24
+664.50,2,Condiments,1998-04-24
+780.00,3,Confections,1998-04-23
+576.00,1,Beverages,1998-04-23
+288.00,7,Produce,1998-04-23
+897.50,4,"Dairy Products",1998-04-23
+556.00,2,Condiments,1998-04-22
+405.00,1,Beverages,1998-04-22
+560.00,3,Confections,1998-04-22
+50.00,4,"Dairy Products",1998-04-22
+988.00,1,Beverages,1998-04-21
+680.00,5,Grains/Cereals,1998-04-21
+690.00,4,"Dairy Products",1998-04-21
+1440.00,3,Confections,1998-04-21
+440.00,7,Produce,1998-04-21
+175.00,8,Seafood,1998-04-21
+234.00,2,Condiments,1998-04-20
+280.00,6,Meat/Poultry,1998-04-20
+420.00,5,Grains/Cereals,1998-04-20
+84.00,8,Seafood,1998-04-20
+2055.00,1,Beverages,1998-04-20
+420.00,3,Confections,1998-04-20
+480.00,4,"Dairy Products",1998-04-20
+4680.00,6,Meat/Poultry,1998-04-17
+1870.00,8,Seafood,1998-04-17
+2643.50,1,Beverages,1998-04-17
+360.00,5,Grains/Cereals,1998-04-17
+1550.50,2,Condiments,1998-04-17
+3996.00,4,"Dairy Products",1998-04-17
+1365.00,3,Confections,1998-04-16
+770.00,6,Meat/Poultry,1998-04-16
+480.00,5,Grains/Cereals,1998-04-16
+384.00,4,"Dairy Products",1998-04-16
+480.00,1,Beverages,1998-04-16
+132.00,2,Condiments,1998-04-16
+315.00,2,Condiments,1998-04-15
+135.00,1,Beverages,1998-04-15
+1255.00,4,"Dairy Products",1998-04-15
+120.00,7,Produce,1998-04-15
+300.00,3,Confections,1998-04-15
+656.00,8,Seafood,1998-04-15
+204.00,8,Seafood,1998-04-14
+1258.50,1,Beverages,1998-04-14
+2520.00,3,Confections,1998-04-14
+630.00,7,Produce,1998-04-14
+2130.00,4,"Dairy Products",1998-04-14
+387.50,2,Condiments,1998-04-13
+120.00,5,Grains/Cereals,1998-04-13
+48.00,3,Confections,1998-04-13
+2260.00,4,"Dairy Products",1998-04-13
+1650.00,1,Beverages,1998-04-13
+562.00,8,Seafood,1998-04-13
+645.00,4,"Dairy Products",1998-04-10
+216.00,2,Condiments,1998-04-10
+1656.00,8,Seafood,1998-04-10
+510.00,7,Produce,1998-04-09
+720.00,8,Seafood,1998-04-09
+276.00,5,Grains/Cereals,1998-04-09
+160.00,1,Beverages,1998-04-09
+658.00,3,Confections,1998-04-09
+2848.00,4,"Dairy Products",1998-04-09
+196.00,5,Grains/Cereals,1998-04-08
+468.00,8,Seafood,1998-04-08
+1024.20,2,Condiments,1998-04-08
+1540.00,7,Produce,1998-04-08
+3522.00,1,Beverages,1998-04-08
+735.00,4,"Dairy Products",1998-04-08
+360.00,6,Meat/Poultry,1998-04-08
+150.00,3,Confections,1998-04-07
+160.00,4,"Dairy Products",1998-04-07
+72.00,6,Meat/Poultry,1998-04-07
+153.00,1,Beverages,1998-04-07
+1281.00,5,Grains/Cereals,1998-04-06
+1530.00,7,Produce,1998-04-06
+860.00,2,Condiments,1998-04-06
+1012.00,6,Meat/Poultry,1998-04-06
+1014.00,1,Beverages,1998-04-06
+1372.00,8,Seafood,1998-04-06
+640.00,5,Grains/Cereals,1998-04-03
+385.00,2,Condiments,1998-04-03
+580.00,7,Produce,1998-04-03
+780.00,8,Seafood,1998-04-03
+642.00,1,Beverages,1998-04-03
+1150.00,4,"Dairy Products",1998-04-03
+240.00,7,Produce,1998-04-02
+400.00,4,"Dairy Products",1998-04-02
+560.00,5,Grains/Cereals,1998-04-02
+875.00,8,Seafood,1998-04-01
+1820.00,3,Confections,1998-04-01
+3230.00,6,Meat/Poultry,1998-04-01
+48.00,4,"Dairy Products",1998-04-01
+1254.00,2,Condiments,1998-04-01
+4265.00,1,Beverages,1998-04-01
+100.00,8,Seafood,1998-03-31
+3060.00,7,Produce,1998-03-31
+528.00,2,Condiments,1998-03-31
+555.00,4,"Dairy Products",1998-03-31
+222.00,1,Beverages,1998-03-31
+2600.00,3,Confections,1998-03-31
+180.00,2,Condiments,1998-03-30
+350.00,1,Beverages,1998-03-30
+3528.00,3,Confections,1998-03-30
+955.00,4,"Dairy Products",1998-03-30
+1456.00,8,Seafood,1998-03-30
+330.00,5,Grains/Cereals,1998-03-27
+1008.00,8,Seafood,1998-03-27
+1773.00,1,Beverages,1998-03-27
+510.00,7,Produce,1998-03-27
+1347.80,2,Condiments,1998-03-26
+1340.00,1,Beverages,1998-03-26
+2860.00,3,Confections,1998-03-26
+1532.00,4,"Dairy Products",1998-03-26
+350.00,8,Seafood,1998-03-26
+579.00,7,Produce,1998-03-26
+150.00,1,Beverages,1998-03-25
+440.00,7,Produce,1998-03-25
+656.24,2,Condiments,1998-03-25
+636.00,6,Meat/Poultry,1998-03-24
+24.50,4,"Dairy Products",1998-03-24
+150.00,1,Beverages,1998-03-24
+125.00,3,Confections,1998-03-24
+150.00,8,Seafood,1998-03-24
+1280.00,5,Grains/Cereals,1998-03-24
+480.00,1,Beverages,1998-03-23
+72.00,5,Grains/Cereals,1998-03-23
+126.00,8,Seafood,1998-03-23
+750.00,4,"Dairy Products",1998-03-23
+1104.00,3,Confections,1998-03-23
+288.00,5,Grains/Cereals,1998-03-20
+70.00,1,Beverages,1998-03-20
+752.00,8,Seafood,1998-03-20
+430.00,4,"Dairy Products",1998-03-20
+780.00,3,Confections,1998-03-20
+192.00,7,Produce,1998-03-20
+1524.00,8,Seafood,1998-03-19
+1147.50,7,Produce,1998-03-19
+443.00,4,"Dairy Products",1998-03-19
+192.00,5,Grains/Cereals,1998-03-19
+720.00,6,Meat/Poultry,1998-03-19
+472.00,1,Beverages,1998-03-19
+1580.00,1,Beverages,1998-03-18
+443.00,2,Condiments,1998-03-18
+1080.00,8,Seafood,1998-03-18
+120.00,4,"Dairy Products",1998-03-18
+153.00,7,Produce,1998-03-18
+144.00,5,Grains/Cereals,1998-03-18
+1747.00,4,"Dairy Products",1998-03-17
+1428.00,3,Confections,1998-03-17
+360.00,8,Seafood,1998-03-17
+96.00,7,Produce,1998-03-17
+180.00,1,Beverages,1998-03-17
+311.20,2,Condiments,1998-03-16
+1750.00,3,Confections,1998-03-16
+44.00,7,Produce,1998-03-16
+150.00,8,Seafood,1998-03-16
+750.00,1,Beverages,1998-03-16
+2202.50,4,"Dairy Products",1998-03-16
+64.00,4,"Dairy Products",1998-03-13
+4098.00,3,Confections,1998-03-13
+480.00,7,Produce,1998-03-13
+158.40,2,Condiments,1998-03-13
+255.00,8,Seafood,1998-03-13
+220.00,6,Meat/Poultry,1998-03-13
+432.00,5,Grains/Cereals,1998-03-12
+455.00,4,"Dairy Products",1998-03-12
+400.00,1,Beverages,1998-03-12
+452.50,8,Seafood,1998-03-12
+660.00,2,Condiments,1998-03-12
+4942.00,3,Confections,1998-03-11
+204.00,7,Produce,1998-03-11
+630.00,8,Seafood,1998-03-11
+3092.00,4,"Dairy Products",1998-03-11
+525.00,5,Grains/Cereals,1998-03-11
+176.00,7,Produce,1998-03-10
+240.00,8,Seafood,1998-03-10
+2177.00,4,"Dairy Products",1998-03-10
+3083.00,1,Beverages,1998-03-10
+264.00,2,Condiments,1998-03-09
+988.00,8,Seafood,1998-03-09
+176.00,5,Grains/Cereals,1998-03-09
+283.50,1,Beverages,1998-03-09
+660.00,5,Grains/Cereals,1998-03-06
+864.00,8,Seafood,1998-03-06
+4058.00,3,Confections,1998-03-06
+384.00,4,"Dairy Products",1998-03-06
+622.00,6,Meat/Poultry,1998-03-06
+300.00,1,Beverages,1998-03-06
+570.00,2,Condiments,1998-03-06
+1915.00,3,Confections,1998-03-05
+180.00,2,Condiments,1998-03-05
+810.00,1,Beverages,1998-03-05
+160.00,5,Grains/Cereals,1998-03-05
+250.00,4,"Dairy Products",1998-03-04
+90.00,1,Beverages,1998-03-04
+384.00,5,Grains/Cereals,1998-03-04
+940.00,8,Seafood,1998-03-04
+84.00,3,Confections,1998-03-04
+660.00,7,Produce,1998-03-04
+528.00,3,Confections,1998-03-03
+2042.00,1,Beverages,1998-03-03
+330.00,6,Meat/Poultry,1998-03-03
+140.00,5,Grains/Cereals,1998-03-03
+440.00,2,Condiments,1998-03-03
+736.00,8,Seafood,1998-03-02
+980.00,4,"Dairy Products",1998-03-02
+810.00,1,Beverages,1998-03-02
+1800.00,3,Confections,1998-03-02
+818.00,4,"Dairy Products",1998-02-27
+500.00,6,Meat/Poultry,1998-02-27
+198.00,3,Confections,1998-02-27
+440.00,5,Grains/Cereals,1998-02-27
+816.00,7,Produce,1998-02-26
+340.00,4,"Dairy Products",1998-02-26
+630.00,1,Beverages,1998-02-26
+448.00,5,Grains/Cereals,1998-02-26
+2424.00,6,Meat/Poultry,1998-02-26
+305.00,8,Seafood,1998-02-26
+879.00,3,Confections,1998-02-26
+695.00,2,Condiments,1998-02-26
+210.00,1,Beverages,1998-02-25
+285.00,2,Condiments,1998-02-25
+270.00,1,Beverages,1998-02-24
+2855.00,3,Confections,1998-02-24
+315.00,2,Condiments,1998-02-24
+660.00,8,Seafood,1998-02-24
+690.00,4,"Dairy Products",1998-02-23
+660.00,6,Meat/Poultry,1998-02-23
+750.00,8,Seafood,1998-02-23
+390.00,3,Confections,1998-02-23
+181.00,1,Beverages,1998-02-20
+60.00,8,Seafood,1998-02-20
+2880.00,6,Meat/Poultry,1998-02-19
+384.00,5,Grains/Cereals,1998-02-19
+1476.00,8,Seafood,1998-02-19
+4950.00,4,"Dairy Products",1998-02-18
+864.00,6,Meat/Poultry,1998-02-18
+3810.00,1,Beverages,1998-02-18
+5301.00,8,Seafood,1998-02-18
+1024.20,2,Condiments,1998-02-18
+640.00,4,"Dairy Products",1998-02-17
+540.00,8,Seafood,1998-02-17
+200.00,4,"Dairy Products",1998-02-16
+522.00,3,Confections,1998-02-16
+350.00,8,Seafood,1998-02-16
+330.00,6,Meat/Poultry,1998-02-16
+1200.00,1,Beverages,1998-02-16
+595.00,8,Seafood,1998-02-13
+210.00,3,Confections,1998-02-13
+1505.00,4,"Dairy Products",1998-02-13
+480.00,2,Condiments,1998-02-13
+1120.00,3,Confections,1998-02-12
+2240.00,1,Beverages,1998-02-12
+480.00,2,Condiments,1998-02-12
+504.00,5,Grains/Cereals,1998-02-12
+896.00,6,Meat/Poultry,1998-02-11
+480.00,3,Confections,1998-02-11
+350.00,5,Grains/Cereals,1998-02-11
+220.00,8,Seafood,1998-02-11
+660.00,5,Grains/Cereals,1998-02-10
+720.00,2,Condiments,1998-02-10
+420.00,8,Seafood,1998-02-10
+2780.00,1,Beverages,1998-02-10
+700.00,3,Confections,1998-02-10
+1594.00,8,Seafood,1998-02-09
+990.00,3,Confections,1998-02-09
+360.00,5,Grains/Cereals,1998-02-09
+85.00,8,Seafood,1998-02-06
+1472.00,3,Confections,1998-02-06
+66.00,7,Produce,1998-02-06
+572.00,6,Meat/Poultry,1998-02-05
+975.00,2,Condiments,1998-02-05
+1696.00,3,Confections,1998-02-05
+270.00,5,Grains/Cereals,1998-02-05
+2088.00,3,Confections,1998-02-04
+1100.00,5,Grains/Cereals,1998-02-04
+24.00,7,Produce,1998-02-04
+50.00,4,"Dairy Products",1998-02-04
+1596.00,1,Beverages,1998-02-04
+379.50,1,Beverages,1998-02-03
+108.00,6,Meat/Poultry,1998-02-03
+1440.00,8,Seafood,1998-02-03
+144.00,8,Seafood,1998-02-02
+1893.00,1,Beverages,1998-02-02
+256.00,5,Grains/Cereals,1998-01-30
+1040.00,8,Seafood,1998-01-30
+247.50,4,"Dairy Products",1998-01-30
+1315.00,3,Confections,1998-01-30
+924.00,6,Meat/Poultry,1998-01-30
+460.00,3,Confections,1998-01-29
+920.00,1,Beverages,1998-01-29
+540.00,5,Grains/Cereals,1998-01-29
+980.00,6,Meat/Poultry,1998-01-29
+163.50,7,Produce,1998-01-29
+360.00,6,Meat/Poultry,1998-01-28
+270.00,1,Beverages,1998-01-28
+280.00,5,Grains/Cereals,1998-01-28
+875.00,3,Confections,1998-01-28
+465.00,2,Condiments,1998-01-28
+2150.00,8,Seafood,1998-01-27
+1650.00,3,Confections,1998-01-27
+602.00,4,"Dairy Products",1998-01-27
+225.00,2,Condiments,1998-01-27
+576.00,5,Grains/Cereals,1998-01-27
+270.00,1,Beverages,1998-01-26
+3670.00,3,Confections,1998-01-26
+220.00,5,Grains/Cereals,1998-01-26
+132.00,6,Meat/Poultry,1998-01-26
+672.00,4,"Dairy Products",1998-01-26
+42.60,6,Meat/Poultry,1998-01-23
+1290.00,3,Confections,1998-01-23
+1650.00,1,Beverages,1998-01-23
+1424.00,2,Condiments,1998-01-23
+14.00,4,"Dairy Products",1998-01-23
+2525.00,4,"Dairy Products",1998-01-22
+144.00,3,Confections,1998-01-22
+400.00,7,Produce,1998-01-22
+2730.00,1,Beverages,1998-01-22
+3732.00,8,Seafood,1998-01-22
+420.00,2,Condiments,1998-01-22
+48.00,7,Produce,1998-01-21
+720.00,8,Seafood,1998-01-21
+3867.00,5,Grains/Cereals,1998-01-21
+800.00,1,Beverages,1998-01-21
+720.00,5,Grains/Cereals,1998-01-20
+875.00,4,"Dairy Products",1998-01-20
+180.00,2,Condiments,1998-01-20
+845.00,1,Beverages,1998-01-20
+580.00,3,Confections,1998-01-20
+136.00,8,Seafood,1998-01-20
+2960.00,8,Seafood,1998-01-19
+360.00,4,"Dairy Products",1998-01-19
+74.00,1,Beverages,1998-01-19
+252.00,3,Confections,1998-01-19
+480.00,3,Confections,1998-01-16
+947.00,8,Seafood,1998-01-16
+2368.00,5,Grains/Cereals,1998-01-16
+255.00,1,Beverages,1998-01-16
+1680.00,4,"Dairy Products",1998-01-16
+627.00,4,"Dairy Products",1998-01-15
+720.00,8,Seafood,1998-01-15
+24.00,2,Condiments,1998-01-15
+510.00,7,Produce,1998-01-15
+612.00,6,Meat/Poultry,1998-01-15
+444.00,3,Confections,1998-01-14
+36.00,8,Seafood,1998-01-14
+54.00,5,Grains/Cereals,1998-01-14
+701.00,1,Beverages,1998-01-14
+160.00,2,Condiments,1998-01-14
+120.00,8,Seafood,1998-01-13
+762.00,2,Condiments,1998-01-13
+871.00,3,Confections,1998-01-13
+1428.00,4,"Dairy Products",1998-01-13
+219.00,1,Beverages,1998-01-13
+1505.00,4,"Dairy Products",1998-01-12
+42.00,1,Beverages,1998-01-12
+330.00,5,Grains/Cereals,1998-01-12
+127.50,8,Seafood,1998-01-12
+300.00,8,Seafood,1998-01-09
+720.00,6,Meat/Poultry,1998-01-09
+740.00,4,"Dairy Products",1998-01-09
+330.00,5,Grains/Cereals,1998-01-09
+180.00,2,Condiments,1998-01-09
+495.00,1,Beverages,1998-01-09
+300.00,3,Confections,1998-01-09
+72.00,7,Produce,1998-01-08
+195.00,3,Confections,1998-01-08
+970.00,1,Beverages,1998-01-08
+720.00,5,Grains/Cereals,1998-01-07
+460.00,4,"Dairy Products",1998-01-07
+559.00,1,Beverages,1998-01-07
+500.00,8,Seafood,1998-01-07
+840.00,1,Beverages,1998-01-06
+2100.00,8,Seafood,1998-01-06
+3925.00,3,Confections,1998-01-06
+570.00,2,Condiments,1998-01-05
+902.00,1,Beverages,1998-01-05
+990.00,8,Seafood,1998-01-05
+56.00,4,"Dairy Products",1998-01-05
+160.00,3,Confections,1998-01-05
+180.00,3,Confections,1998-01-02
+1648.00,4,"Dairy Products",1998-01-02
+396.00,5,Grains/Cereals,1998-01-02
+240.00,2,Condiments,1998-01-02
+1050.00,8,Seafood,1998-01-02
+425.00,1,Beverages,1998-01-01
+210.00,3,Confections,1998-01-01
+84.00,8,Seafood,1998-01-01
+1120.00,5,Grains/Cereals,1998-01-01
+35.00,8,Seafood,1997-12-31
+300.00,7,Produce,1997-12-31
+30.00,2,Condiments,1997-12-31
+270.00,1,Beverages,1997-12-31
+528.00,7,Produce,1997-12-30
+306.00,8,Seafood,1997-12-30
+240.00,4,"Dairy Products",1997-12-30
+510.00,1,Beverages,1997-12-30
+1014.00,3,Confections,1997-12-30
+325.00,3,Confections,1997-12-29
+900.00,8,Seafood,1997-12-29
+2920.00,6,Meat/Poultry,1997-12-29
+360.00,7,Produce,1997-12-29
+130.00,3,Confections,1997-12-26
+320.00,1,Beverages,1997-12-26
+890.00,4,"Dairy Products",1997-12-26
+196.00,6,Meat/Poultry,1997-12-26
+120.00,7,Produce,1997-12-26
+240.00,8,Seafood,1997-12-26
+1132.00,4,"Dairy Products",1997-12-25
+630.00,5,Grains/Cereals,1997-12-25
+525.00,3,Confections,1997-12-25
+100.00,2,Condiments,1997-12-25
+2145.00,3,Confections,1997-12-24
+938.00,6,Meat/Poultry,1997-12-24
+350.00,8,Seafood,1997-12-24
+107.10,7,Produce,1997-12-24
+256.00,5,Grains/Cereals,1997-12-24
+135.00,1,Beverages,1997-12-23
+500.00,8,Seafood,1997-12-23
+435.00,3,Confections,1997-12-23
+588.00,6,Meat/Poultry,1997-12-23
+480.00,5,Grains/Cereals,1997-12-22
+1080.00,1,Beverages,1997-12-22
+76.50,7,Produce,1997-12-22
+330.00,2,Condiments,1997-12-22
+1122.00,3,Confections,1997-12-22
+1560.00,8,Seafood,1997-12-22
+540.00,8,Seafood,1997-12-19
+832.50,1,Beverages,1997-12-19
+1024.20,2,Condiments,1997-12-19
+720.00,6,Meat/Poultry,1997-12-19
+224.00,1,Beverages,1997-12-18
+865.00,8,Seafood,1997-12-18
+1150.00,4,"Dairy Products",1997-12-18
+700.00,7,Produce,1997-12-17
+84.00,6,Meat/Poultry,1997-12-17
+43.00,4,"Dairy Products",1997-12-17
+480.00,5,Grains/Cereals,1997-12-17
+180.00,2,Condiments,1997-12-16
+1925.00,1,Beverages,1997-12-16
+250.00,8,Seafood,1997-12-16
+1960.00,3,Confections,1997-12-16
+324.00,8,Seafood,1997-12-15
+448.00,5,Grains/Cereals,1997-12-15
+688.00,4,"Dairy Products",1997-12-15
+1440.00,7,Produce,1997-12-15
+51.00,8,Seafood,1997-12-12
+99.00,1,Beverages,1997-12-12
+105.00,1,Beverages,1997-12-11
+726.00,6,Meat/Poultry,1997-12-11
+3096.00,4,"Dairy Products",1997-12-11
+1100.00,2,Condiments,1997-12-11
+648.00,6,Meat/Poultry,1997-12-10
+768.00,4,"Dairy Products",1997-12-10
+75.00,4,"Dairy Products",1997-12-09
+750.00,8,Seafood,1997-12-08
+380.00,2,Condiments,1997-12-08
+2846.00,4,"Dairy Products",1997-12-08
+580.00,5,Grains/Cereals,1997-12-08
+975.00,3,Confections,1997-12-08
+540.00,1,Beverages,1997-12-05
+28.00,5,Grains/Cereals,1997-12-05
+892.50,7,Produce,1997-12-05
+1160.00,3,Confections,1997-12-05
+1200.00,2,Condiments,1997-12-04
+150.00,5,Grains/Cereals,1997-12-03
+310.00,2,Condiments,1997-12-03
+1120.00,3,Confections,1997-12-03
+580.00,1,Beverages,1997-12-03
+302.00,1,Beverages,1997-12-02
+336.00,7,Produce,1997-12-02
+1830.00,3,Confections,1997-12-02
+1440.00,5,Grains/Cereals,1997-12-02
+1110.00,1,Beverages,1997-12-01
+2344.00,3,Confections,1997-12-01
+2200.00,1,Beverages,1997-11-28
+230.00,4,"Dairy Products",1997-11-28
+500.00,3,Confections,1997-11-28
+1920.00,5,Grains/Cereals,1997-11-28
+432.00,5,Grains/Cereals,1997-11-27
+972.00,4,"Dairy Products",1997-11-27
+1110.00,1,Beverages,1997-11-27
+2124.00,3,Confections,1997-11-27
+1612.00,8,Seafood,1997-11-27
+360.00,3,Confections,1997-11-26
+1075.00,4,"Dairy Products",1997-11-26
+1028.00,5,Grains/Cereals,1997-11-26
+100.00,7,Produce,1997-11-25
+153.00,8,Seafood,1997-11-25
+1410.00,8,Seafood,1997-11-24
+740.00,3,Confections,1997-11-24
+108.00,1,Beverages,1997-11-24
+129.00,4,"Dairy Products",1997-11-24
+400.00,4,"Dairy Products",1997-11-21
+35.70,7,Produce,1997-11-21
+480.00,8,Seafood,1997-11-21
+96.00,4,"Dairy Products",1997-11-20
+30.00,1,Beverages,1997-11-20
+1400.00,8,Seafood,1997-11-20
+2000.00,5,Grains/Cereals,1997-11-20
+392.00,5,Grains/Cereals,1997-11-19
+3354.00,4,"Dairy Products",1997-11-19
+99.00,2,Condiments,1997-11-19
+585.00,3,Confections,1997-11-19
+947.00,8,Seafood,1997-11-19
+160.00,2,Condiments,1997-11-18
+1248.00,8,Seafood,1997-11-18
+888.00,4,"Dairy Products",1997-11-18
+2142.00,8,Seafood,1997-11-17
+310.00,2,Condiments,1997-11-14
+2240.00,4,"Dairy Products",1997-11-14
+202.50,1,Beverages,1997-11-14
+1120.00,1,Beverages,1997-11-13
+110.00,7,Produce,1997-11-13
+336.00,5,Grains/Cereals,1997-11-13
+480.00,8,Seafood,1997-11-13
+156.00,8,Seafood,1997-11-12
+576.00,5,Grains/Cereals,1997-11-12
+99.00,3,Confections,1997-11-12
+600.00,2,Condiments,1997-11-11
+348.00,8,Seafood,1997-11-11
+300.00,1,Beverages,1997-11-11
+404.00,2,Condiments,1997-11-10
+800.00,5,Grains/Cereals,1997-11-07
+554.24,7,Produce,1997-11-07
+60.00,1,Beverages,1997-11-07
+540.00,8,Seafood,1997-11-07
+396.00,2,Condiments,1997-11-07
+360.00,7,Produce,1997-11-06
+60.00,1,Beverages,1997-11-06
+1120.00,3,Confections,1997-11-06
+495.00,3,Confections,1997-11-05
+150.00,2,Condiments,1997-11-05
+129.00,4,"Dairy Products",1997-11-05
+264.00,6,Meat/Poultry,1997-11-04
+675.00,1,Beverages,1997-11-04
+420.00,4,"Dairy Products",1997-11-04
+1720.00,3,Confections,1997-11-04
+750.00,8,Seafood,1997-11-04
+440.00,6,Meat/Poultry,1997-11-03
+240.00,5,Grains/Cereals,1997-11-03
+500.00,2,Condiments,1997-11-03
+185.00,4,"Dairy Products",1997-11-03
+300.00,8,Seafood,1997-10-31
+128.00,5,Grains/Cereals,1997-10-31
+132.00,6,Meat/Poultry,1997-10-31
+136.00,8,Seafood,1997-10-30
+95.00,2,Condiments,1997-10-30
+375.00,3,Confections,1997-10-30
+500.00,2,Condiments,1997-10-29
+1305.00,3,Confections,1997-10-29
+670.50,1,Beverages,1997-10-29
+2150.00,4,"Dairy Products",1997-10-29
+184.00,4,"Dairy Products",1997-10-28
+672.00,1,Beverages,1997-10-28
+900.00,4,"Dairy Products",1997-10-27
+1960.00,3,Confections,1997-10-27
+1772.00,8,Seafood,1997-10-27
+1120.00,6,Meat/Poultry,1997-10-27
+84.00,7,Produce,1997-10-24
+1075.00,4,"Dairy Products",1997-10-24
+420.00,6,Meat/Poultry,1997-10-24
+1036.00,3,Confections,1997-10-24
+190.00,2,Condiments,1997-10-24
+690.00,4,"Dairy Products",1997-10-23
+178.50,8,Seafood,1997-10-23
+594.00,6,Meat/Poultry,1997-10-22
+432.00,5,Grains/Cereals,1997-10-22
+405.00,1,Beverages,1997-10-22
+1350.00,3,Confections,1997-10-22
+1953.00,8,Seafood,1997-10-22
+720.00,5,Grains/Cereals,1997-10-21
+4428.00,6,Meat/Poultry,1997-10-21
+144.00,3,Confections,1997-10-21
+1050.00,8,Seafood,1997-10-21
+120.00,3,Confections,1997-10-20
+1454.20,2,Condiments,1997-10-17
+280.00,4,"Dairy Products",1997-10-17
+130.00,8,Seafood,1997-10-17
+336.00,7,Produce,1997-10-17
+880.00,5,Grains/Cereals,1997-10-16
+660.00,3,Confections,1997-10-16
+2428.00,1,Beverages,1997-10-16
+462.00,6,Meat/Poultry,1997-10-16
+128.00,4,"Dairy Products",1997-10-16
+952.00,4,"Dairy Products",1997-10-15
+627.50,1,Beverages,1997-10-14
+120.00,2,Condiments,1997-10-14
+770.00,8,Seafood,1997-10-14
+560.00,4,"Dairy Products",1997-10-14
+480.00,3,Confections,1997-10-14
+150.00,1,Beverages,1997-10-13
+93.00,2,Condiments,1997-10-13
+1132.00,4,"Dairy Products",1997-10-13
+1160.00,3,Confections,1997-10-10
+1380.00,4,"Dairy Products",1997-10-10
+511.50,1,Beverages,1997-10-10
+144.00,3,Confections,1997-10-09
+75.00,4,"Dairy Products",1997-10-09
+975.00,2,Condiments,1997-10-09
+440.00,1,Beverages,1997-10-09
+608.00,6,Meat/Poultry,1997-10-09
+84.00,3,Confections,1997-10-08
+612.00,8,Seafood,1997-10-08
+440.00,6,Meat/Poultry,1997-10-08
+1938.00,1,Beverages,1997-10-08
+100.00,4,"Dairy Products",1997-10-07
+341.40,2,Condiments,1997-10-07
+320.00,1,Beverages,1997-10-07
+1690.00,4,"Dairy Products",1997-10-06
+2295.00,7,Produce,1997-10-06
+330.00,8,Seafood,1997-10-06
+2750.00,1,Beverages,1997-10-06
+1765.20,6,Meat/Poultry,1997-10-06
+460.00,2,Condiments,1997-10-03
+1440.00,6,Meat/Poultry,1997-10-03
+3120.00,3,Confections,1997-10-03
+1885.00,1,Beverages,1997-10-03
+480.00,5,Grains/Cereals,1997-10-02
+360.00,2,Condiments,1997-10-02
+1320.00,7,Produce,1997-10-01
+990.50,1,Beverages,1997-10-01
+153.00,8,Seafood,1997-10-01
+375.00,3,Confections,1997-09-30
+1730.00,6,Meat/Poultry,1997-09-30
+156.00,8,Seafood,1997-09-30
+270.00,8,Seafood,1997-09-29
+180.00,3,Confections,1997-09-29
+288.00,5,Grains/Cereals,1997-09-26
+840.00,4,"Dairy Products",1997-09-26
+700.00,8,Seafood,1997-09-26
+480.00,3,Confections,1997-09-26
+696.00,3,Confections,1997-09-25
+105.00,4,"Dairy Products",1997-09-25
+450.00,1,Beverages,1997-09-25
+88.00,2,Condiments,1997-09-25
+504.00,5,Grains/Cereals,1997-09-25
+1650.00,3,Confections,1997-09-24
+860.00,4,"Dairy Products",1997-09-24
+560.00,5,Grains/Cereals,1997-09-24
+2797.00,4,"Dairy Products",1997-09-23
+840.00,6,Meat/Poultry,1997-09-23
+3000.00,8,Seafood,1997-09-23
+17.00,8,Seafood,1997-09-22
+28.00,4,"Dairy Products",1997-09-22
+834.00,3,Confections,1997-09-22
+210.00,2,Condiments,1997-09-22
+360.00,6,Meat/Poultry,1997-09-19
+214.20,7,Produce,1997-09-19
+360.00,8,Seafood,1997-09-19
+222.00,1,Beverages,1997-09-18
+194.00,5,Grains/Cereals,1997-09-18
+99.00,3,Confections,1997-09-18
+210.00,1,Beverages,1997-09-17
+276.00,4,"Dairy Products",1997-09-17
+180.00,2,Condiments,1997-09-17
+980.00,3,Confections,1997-09-17
+1940.00,8,Seafood,1997-09-16
+1200.00,1,Beverages,1997-09-16
+704.00,5,Grains/Cereals,1997-09-16
+344.00,4,"Dairy Products",1997-09-15
+88.00,6,Meat/Poultry,1997-09-15
+780.00,8,Seafood,1997-09-15
+270.00,5,Grains/Cereals,1997-09-15
+2257.00,4,"Dairy Products",1997-09-12
+1296.00,6,Meat/Poultry,1997-09-12
+150.00,2,Condiments,1997-09-12
+30.00,1,Beverages,1997-09-11
+16.00,4,"Dairy Products",1997-09-11
+240.00,7,Produce,1997-09-11
+1254.00,8,Seafood,1997-09-10
+225.00,2,Condiments,1997-09-10
+240.00,7,Produce,1997-09-10
+708.00,5,Grains/Cereals,1997-09-10
+290.00,3,Confections,1997-09-09
+588.00,8,Seafood,1997-09-09
+6.00,1,Beverages,1997-09-09
+735.00,3,Confections,1997-09-08
+1680.00,3,Confections,1997-09-05
+2400.00,4,"Dairy Products",1997-09-05
+3290.00,8,Seafood,1997-09-05
+2200.00,1,Beverages,1997-09-05
+840.00,2,Condiments,1997-09-05
+21.42,7,Produce,1997-09-04
+1230.00,8,Seafood,1997-09-04
+192.00,3,Confections,1997-09-04
+2480.00,2,Condiments,1997-09-04
+1080.00,5,Grains/Cereals,1997-09-04
+840.00,4,"Dairy Products",1997-09-04
+500.00,8,Seafood,1997-09-03
+240.00,2,Condiments,1997-09-02
+990.00,3,Confections,1997-09-02
+40.00,1,Beverages,1997-09-02
+560.00,4,"Dairy Products",1997-09-02
+168.00,6,Meat/Poultry,1997-09-02
+780.00,5,Grains/Cereals,1997-09-01
+72.00,8,Seafood,1997-09-01
+144.00,3,Confections,1997-09-01
+1080.00,8,Seafood,1997-08-29
+1740.00,6,Meat/Poultry,1997-08-29
+440.00,7,Produce,1997-08-28
+240.00,1,Beverages,1997-08-28
+375.00,5,Grains/Cereals,1997-08-28
+360.00,4,"Dairy Products",1997-08-28
+153.00,8,Seafood,1997-08-27
+690.00,4,"Dairy Products",1997-08-27
+242.50,1,Beverages,1997-08-27
+420.00,2,Condiments,1997-08-27
+360.00,3,Confections,1997-08-27
+1430.00,8,Seafood,1997-08-26
+530.00,8,Seafood,1997-08-25
+782.00,1,Beverages,1997-08-25
+330.00,7,Produce,1997-08-25
+2100.00,8,Seafood,1997-08-22
+675.00,1,Beverages,1997-08-22
+380.00,2,Condiments,1997-08-22
+840.00,3,Confections,1997-08-22
+825.00,1,Beverages,1997-08-21
+860.00,4,"Dairy Products",1997-08-21
+315.00,2,Condiments,1997-08-20
+1440.00,4,"Dairy Products",1997-08-20
+656.00,8,Seafood,1997-08-20
+72.00,8,Seafood,1997-08-19
+550.00,3,Confections,1997-08-19
+500.00,2,Condiments,1997-08-19
+50.00,4,"Dairy Products",1997-08-19
+1440.00,5,Grains/Cereals,1997-08-19
+532.25,2,Condiments,1997-08-18
+1000.00,5,Grains/Cereals,1997-08-18
+1072.50,7,Produce,1997-08-15
+2756.00,8,Seafood,1997-08-15
+6075.00,3,Confections,1997-08-15
+30.00,1,Beverages,1997-08-15
+900.00,4,"Dairy Products",1997-08-15
+525.00,1,Beverages,1997-08-14
+70.00,4,"Dairy Products",1997-08-14
+264.00,6,Meat/Poultry,1997-08-13
+105.00,1,Beverages,1997-08-13
+720.00,6,Meat/Poultry,1997-08-12
+337.50,1,Beverages,1997-08-12
+162.00,5,Grains/Cereals,1997-08-12
+770.00,8,Seafood,1997-08-11
+975.00,3,Confections,1997-08-11
+1020.00,4,"Dairy Products",1997-08-11
+432.00,6,Meat/Poultry,1997-08-11
+280.00,4,"Dairy Products",1997-08-08
+70.00,5,Grains/Cereals,1997-08-08
+21.42,7,Produce,1997-08-08
+1008.00,1,Beverages,1997-08-07
+880.00,3,Confections,1997-08-07
+369.94,7,Produce,1997-08-07
+100.00,2,Condiments,1997-08-07
+216.00,6,Meat/Poultry,1997-08-07
+522.00,3,Confections,1997-08-06
+270.00,1,Beverages,1997-08-06
+345.00,4,"Dairy Products",1997-08-05
+1180.00,1,Beverages,1997-08-05
+60.00,3,Confections,1997-08-05
+380.00,5,Grains/Cereals,1997-08-05
+1000.00,5,Grains/Cereals,1997-08-04
+1176.00,3,Confections,1997-08-04
+480.00,5,Grains/Cereals,1997-08-01
+435.00,3,Confections,1997-08-01
+924.00,2,Condiments,1997-08-01
+825.00,4,"Dairy Products",1997-07-31
+336.00,5,Grains/Cereals,1997-07-31
+1035.00,1,Beverages,1997-07-31
+110.00,6,Meat/Poultry,1997-07-30
+96.00,8,Seafood,1997-07-29
+70.00,4,"Dairy Products",1997-07-29
+610.00,1,Beverages,1997-07-29
+224.00,3,Confections,1997-07-29
+1120.00,4,"Dairy Products",1997-07-28
+240.00,1,Beverages,1997-07-28
+2025.00,8,Seafood,1997-07-28
+432.00,3,Confections,1997-07-28
+420.00,4,"Dairy Products",1997-07-25
+216.00,1,Beverages,1997-07-25
+546.00,8,Seafood,1997-07-25
+40.50,1,Beverages,1997-07-24
+168.00,3,Confections,1997-07-24
+85.00,8,Seafood,1997-07-24
+672.00,5,Grains/Cereals,1997-07-23
+1470.00,8,Seafood,1997-07-22
+1147.50,7,Produce,1997-07-22
+650.00,3,Confections,1997-07-22
+337.00,4,"Dairy Products",1997-07-22
+2640.00,6,Meat/Poultry,1997-07-22
+400.00,2,Condiments,1997-07-22
+990.00,3,Confections,1997-07-21
+2625.00,4,"Dairy Products",1997-07-21
+1200.00,5,Grains/Cereals,1997-07-18
+720.00,3,Confections,1997-07-18
+30.00,1,Beverages,1997-07-18
+60.00,2,Condiments,1997-07-17
+1380.00,8,Seafood,1997-07-16
+560.00,4,"Dairy Products",1997-07-16
+112.00,6,Meat/Poultry,1997-07-16
+650.00,3,Confections,1997-07-15
+2300.00,3,Confections,1997-07-14
+207.00,4,"Dairy Products",1997-07-14
+1010.00,1,Beverages,1997-07-11
+444.00,2,Condiments,1997-07-11
+560.00,5,Grains/Cereals,1997-07-11
+2280.00,2,Condiments,1997-07-10
+960.00,1,Beverages,1997-07-10
+2795.00,4,"Dairy Products",1997-07-10
+735.00,3,Confections,1997-07-09
+12.00,1,Beverages,1997-07-09
+860.00,4,"Dairy Products",1997-07-09
+768.00,5,Grains/Cereals,1997-07-09
+360.00,8,Seafood,1997-07-09
+125.00,3,Confections,1997-07-08
+1100.00,2,Condiments,1997-07-08
+937.00,2,Condiments,1997-07-07
+1400.00,6,Meat/Poultry,1997-07-07
+255.00,7,Produce,1997-07-07
+270.00,1,Beverages,1997-07-07
+128.00,1,Beverages,1997-07-04
+1400.00,5,Grains/Cereals,1997-07-03
+2080.00,8,Seafood,1997-07-03
+150.00,3,Confections,1997-07-02
+240.00,2,Condiments,1997-07-02
+640.00,1,Beverages,1997-07-02
+128.00,5,Grains/Cereals,1997-07-02
+180.00,3,Confections,1997-07-01
+3252.00,4,"Dairy Products",1997-06-30
+360.00,6,Meat/Poultry,1997-06-30
+88.00,5,Grains/Cereals,1997-06-27
+42.00,1,Beverages,1997-06-27
+225.00,8,Seafood,1997-06-26
+750.00,1,Beverages,1997-06-26
+107.10,7,Produce,1997-06-26
+450.00,2,Condiments,1997-06-26
+315.00,1,Beverages,1997-06-25
+440.00,2,Condiments,1997-06-25
+640.00,1,Beverages,1997-06-24
+132.00,5,Grains/Cereals,1997-06-24
+426.00,2,Condiments,1997-06-23
+455.00,1,Beverages,1997-06-23
+860.00,4,"Dairy Products",1997-06-23
+30.00,1,Beverages,1997-06-20
+66.00,2,Condiments,1997-06-20
+912.00,4,"Dairy Products",1997-06-20
+49.00,4,"Dairy Products",1997-06-19
+108.00,5,Grains/Cereals,1997-06-19
+1296.00,6,Meat/Poultry,1997-06-19
+1480.00,1,Beverages,1997-06-19
+650.00,3,Confections,1997-06-19
+70.00,8,Seafood,1997-06-19
+230.00,4,"Dairy Products",1997-06-18
+225.00,1,Beverages,1997-06-18
+396.00,3,Confections,1997-06-18
+1750.00,8,Seafood,1997-06-18
+75.00,4,"Dairy Products",1997-06-17
+1832.00,5,Grains/Cereals,1997-06-17
+78.54,7,Produce,1997-06-17
+90.00,1,Beverages,1997-06-16
+1505.00,4,"Dairy Products",1997-06-16
+42.50,8,Seafood,1997-06-13
+36.00,7,Produce,1997-06-12
+936.00,8,Seafood,1997-06-12
+30.00,1,Beverages,1997-06-12
+3395.00,4,"Dairy Products",1997-06-12
+324.00,5,Grains/Cereals,1997-06-11
+400.00,1,Beverages,1997-06-11
+902.00,6,Meat/Poultry,1997-06-10
+650.00,8,Seafood,1997-06-10
+258.00,4,"Dairy Products",1997-06-10
+2240.00,5,Grains/Cereals,1997-06-10
+650.00,3,Confections,1997-06-09
+70.00,4,"Dairy Products",1997-06-09
+720.00,8,Seafood,1997-06-06
+600.00,7,Produce,1997-06-06
+975.00,3,Confections,1997-06-06
+100.00,2,Condiments,1997-06-06
+300.00,8,Seafood,1997-06-05
+396.00,6,Meat/Poultry,1997-06-05
+66.00,8,Seafood,1997-06-04
+240.00,7,Produce,1997-06-04
+300.00,3,Confections,1997-06-04
+960.00,5,Grains/Cereals,1997-06-04
+648.00,6,Meat/Poultry,1997-06-04
+540.00,5,Grains/Cereals,1997-06-03
+576.00,4,"Dairy Products",1997-06-03
+300.00,1,Beverages,1997-06-03
+420.00,3,Confections,1997-06-02
+454.20,7,Produce,1997-06-02
+960.00,5,Grains/Cereals,1997-06-02
+288.00,1,Beverages,1997-06-02
+192.00,1,Beverages,1997-05-30
+120.00,2,Condiments,1997-05-30
+2752.00,3,Confections,1997-05-30
+1040.00,5,Grains/Cereals,1997-05-30
+1365.00,4,"Dairy Products",1997-05-30
+774.00,4,"Dairy Products",1997-05-29
+450.00,1,Beverages,1997-05-29
+1608.00,3,Confections,1997-05-28
+176.00,6,Meat/Poultry,1997-05-28
+590.00,2,Condiments,1997-05-28
+640.00,1,Beverages,1997-05-28
+576.00,7,Produce,1997-05-27
+2365.00,4,"Dairy Products",1997-05-27
+1200.00,8,Seafood,1997-05-27
+370.00,1,Beverages,1997-05-26
+350.00,8,Seafood,1997-05-26
+1560.00,8,Seafood,1997-05-23
+2600.00,3,Confections,1997-05-23
+255.00,7,Produce,1997-05-23
+960.00,1,Beverages,1997-05-23
+552.00,4,"Dairy Products",1997-05-23
+50.00,4,"Dairy Products",1997-05-22
+1540.00,5,Grains/Cereals,1997-05-21
+231.00,1,Beverages,1997-05-21
+750.00,4,"Dairy Products",1997-05-21
+154.00,7,Produce,1997-05-21
+672.00,6,Meat/Poultry,1997-05-20
+75.00,4,"Dairy Products",1997-05-20
+2015.00,3,Confections,1997-05-19
+1470.00,2,Condiments,1997-05-19
+1036.00,1,Beverages,1997-05-19
+207.00,4,"Dairy Products",1997-05-19
+564.00,3,Confections,1997-05-16
+52.50,4,"Dairy Products",1997-05-16
+96.00,8,Seafood,1997-05-16
+385.00,1,Beverages,1997-05-15
+24.00,4,"Dairy Products",1997-05-15
+4114.00,4,"Dairy Products",1997-05-14
+438.00,8,Seafood,1997-05-14
+72.00,7,Produce,1997-05-14
+490.00,4,"Dairy Products",1997-05-13
+350.00,8,Seafood,1997-05-13
+110.00,5,Grains/Cereals,1997-05-13
+1238.00,8,Seafood,1997-05-12
+280.00,6,Meat/Poultry,1997-05-12
+576.00,4,"Dairy Products",1997-05-12
+1000.00,2,Condiments,1997-05-12
+528.00,2,Condiments,1997-05-09
+540.00,8,Seafood,1997-05-09
+380.00,2,Condiments,1997-05-08
+32.00,4,"Dairy Products",1997-05-08
+880.00,6,Meat/Poultry,1997-05-08
+1075.00,1,Beverages,1997-05-08
+430.00,4,"Dairy Products",1997-05-07
+580.00,3,Confections,1997-05-07
+308.00,6,Meat/Poultry,1997-05-07
+259.00,4,"Dairy Products",1997-05-06
+1000.00,2,Condiments,1997-05-05
+108.00,1,Beverages,1997-05-05
+720.00,5,Grains/Cereals,1997-05-05
+900.00,8,Seafood,1997-05-05
+1305.00,8,Seafood,1997-05-02
+525.00,3,Confections,1997-05-01
+1517.00,8,Seafood,1997-05-01
+970.00,6,Meat/Poultry,1997-05-01
