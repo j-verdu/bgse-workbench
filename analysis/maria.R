@@ -12,3 +12,6 @@ data = fetch(result, n=-1)
 
 y <- data[,1]
 X <- as.matrix(data[,2:11])
+
+
+##I need to install RMYSQL
