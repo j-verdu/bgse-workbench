@@ -11,7 +11,8 @@ sumquantities<-function(X,r){
   data<-rep(0,length(X))
   for(i in (length(X):r)){ 
     k<- i-r
-    data[i]<-sum(X[k:i])
+    s<-i-1
+    data[i]<-sum(X[k:s])
   }
   mean<-mean(data)
   sd<-sd(data)
@@ -67,12 +68,12 @@ resum$quantity_16<-resumtable(resum$days,sales_16$days,sales_16$Quantity)
 ########---------------------------
 ##X1=Sales of last week:
 
-resum$X1_SalesWeek <-sumquantities(resum$quantity_16,6)
+resum$X1_SalesWeek <-sumquantities(resum$quantity_16,7)
 
 ########---------------------------
 ##X2=Sales of last month:
 
-resum$X2_SalesMonth <- sumquantities(resum$quantity_16,29)
+resum$X2_SalesMonth <- sumquantities(resum$quantity_16,30)
 
 ########---------------------------
 ##X3=Sales of last trimester:
@@ -82,8 +83,7 @@ resum$X3_SalesTrimes <- sumquantities(resum$quantity_16,90)
 ########---------------------------
 ##X4=Sales of last Semester:
 
-resum$X4_SalesSemes <- sumquantities(resum$quantity_16,181)
-
+resum$X4_SalesSemes <- sumquantities(resum$quantity_16,182)
 
 ########---------------------------
 ##X5=Sales of the day of other products of categ.3:
