@@ -128,7 +128,23 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 ##########################################################################
 
 
-DATA<- resum[183:nrow(resum)-7,3:ncol(resum)]
+DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
+
+## Predict the next month sale
+
+b<-paste(names(DATA)[-1],collapse=" + ")
+formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
+
+logit <- glm( formula , poisson(link='log'),data=DATA )
+
+summary(logit)
+tests <-resum[644,3:9]
+
+predictedGLM<-predict.glm(logit,tests,type="response")
+predicted
+
+
+
 
 # Split data into training (75%) and testing (25%)
 train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
