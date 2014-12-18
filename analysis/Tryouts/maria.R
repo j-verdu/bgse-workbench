@@ -6,7 +6,7 @@ library(ggplot2)
 ################################################################
 
 #Creating sum of standarized:
-# r=6 week, r=29 month, r=89 trimestre
+# r=7 week, r=30 month, r=90 trimestre
 sumquantities<-function(X,r){
   data<-rep(0,length(X))
   for(i in (length(X):r)){ 
@@ -120,12 +120,18 @@ resum$X5quantity_cat3<-quantitiescate(resum$days,sales_cat3$days,sales_cat3$Quan
 
 resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quantity)
 
-################################################################
-##############      Non first 6 month  #########################
-################################################################
+###########################################################################
+#  Discard first 6 months, since we can't generate all X properly #########
+##########################################################################
 
 
 DATA<- resum[183:nrow(resum)-7,3:ncol(resum)]
+
+# Split data into training (75%) and testing (25%)
+train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
+test <- DATA[-train_idx,] # test data
+DATA <- DATA[train_idx,] # train data
+
 
 y <- DATA[,1]
 X <- as.matrix(DATA[,2:7])
@@ -135,3 +141,28 @@ logit <- glm( y ~ X , poisson(link='log') )
 summary( logit )
 
 logit
+
+# Validate with test data
+
+b<-paste(names(DATA)[-1],collapse=" + ")
+formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
+
+logit <- glm( formula , poisson(link='log'),data=DATA )
+
+
+predicted<-predict(logit,test,type="response")
+# order by date
+date<-as.integer(rownames(test))
+results<-data.frame(date,observed=test[,1],predict=predicted,error=predicted-test[,1])
+results<-results[order(results$date),]
+plot(results$date,results$error)
+
+weeks0<-results[results$observed==0,]
+plot(weeks0$date,weeks0$error)
+
+weeksGt0<-results[results$observed!=0,]
+plot(weeksGt0$date,weeksGt0$error)
+
+
+RMSE<-sqrt(mean(results$error^2))
+
