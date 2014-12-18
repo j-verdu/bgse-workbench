@@ -156,31 +156,41 @@ train <- DATA[train_idx,] # train data
 b<-paste(names(train)[-1],collapse=" + ")
 formula <- paste0(paste0(names(train)[1]," ~ "),b) 
 
-model_percentRMSE<-rep(0,3)
-names(model_percentRMSE)<-c("GLM","GLM_Lasso","GLM_Ridge")
+model_percentRMSE<-rep(0,4)
+names(model_percentRMSE)<-c("linear","GLM","GLM_Lasso","GLM_Ridge")
+
+## Model simply linear
+lin <- lm( formula ,data=train )
+predicted<-predict(lin,test,type="response")
+results<-gen_results(predicted,test)
+RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
+model_percentRMSE[1]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson
 logit <- glm( formula , poisson(link='log'),data=train )
 predicted<-predict(logit,test,type="response")
 results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[1]<-RMSE/mean(test[,1])
+model_percentRMSE[2]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson Lasso
 lasso <- cv.glmnet(as.matrix(train[,-1]),train[,1], family="poisson",alpha=1 )
 predicted<-as.vector(predict(lasso,as.matrix(test[,-1]),s="lambda.min"))
 results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[2]<-RMSE/mean(test[,1])
+model_percentRMSE[3]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson Ridge
 ridge <- cv.glmnet(as.matrix(train[,-1]),train[,1], family="poisson",alpha=0 )
 predicted<-as.vector(predict(ridge,as.matrix(test[,-1]),s="lambda.min"))
 results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[3]<-RMSE/mean(test[,1])
+model_percentRMSE[4]<-RMSE/mean(test[,1])
 
-models<-list(logit,lasso,ridge)
+
+
+
+models<-list(lin,logit,lasso,ridge)
 
 ### Model selection
 
@@ -191,13 +201,13 @@ model<-models[[selected]]
 ## Predict the next month sale
 
 tests <-resum[644,3:9] #data for last day, to predict actual future sales
-if (selected %in% 2:3){tests<-as.matrix(tests[-1])}
+if (selected %in% 3:4){tests<-as.matrix(tests[-1])}
 
 preds<-predict(model,tests,type="response",interval="predict",se.fit=TRUE)
 
 
 ##Critical Values
-if (selected==1){
+if (selected<3){
     critval <- 1.96 ## approx 95% CI
     upr <- preds$fit + (critval * preds$se.fit)
     lwr <- preds$fit - (critval * preds$se.fit)
@@ -215,11 +225,11 @@ if (selected==1){
 DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
 # Add date id and observed sales next month
 Graph<- data.frame(date=as.Date(resum[183:nrow(resum)-30,1],origin = "1970-01-01"),Observed=resum[183:nrow(resum)-30,3])
-if (selected %in% 2:3){
+if (selected %in% 3:4){
     DATA<-as.matrix(DATA)
     prediction<-predict(model,as.matrix(DATA[,-1]),s="lambda.min")
     Graph$PredictionX<-prediction    
-} else if (selected==1){
+} else if (selected<3){
     predictionsYs<-predict(model,DATA,type="response",interval="predict",se.fit=TRUE)
         Graph$PredictionX<-predictionsYs$fit
     critval <- 1.96 ## approx 95% CI
