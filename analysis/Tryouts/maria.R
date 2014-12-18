@@ -44,6 +44,22 @@ quantitiescate<-function(X,YD,YQ){
   return(da)
 }
 
+
+##### Variable Y, prevision next week:
+
+Yfunction <- function(X){
+  r<- 6
+  t <-(length(X)-6)
+  data<-rep(0,length(X))
+  for(i in (1:t)){ 
+    k <- i+r
+    data[i]<-sum(X[i:k])
+  }
+  return(data)
+}
+
+
+
 ################################################################
 #####################     DATA    ##############################
 ################################################################
@@ -66,9 +82,18 @@ names(resum)<- c("days")
 resum$quantity_16<-resumtable(resum$days,sales_16$days,sales_16$Quantity)
 
 ########---------------------------
+##Y - Creation on the dependent variable:
+
+
+resum$Y_salesnextweek<-Yfunction(resum$quantity_16)
+
+
+
+########---------------------------
 ##X1=Sales of last week:
 
 resum$X1_SalesWeek <-sumquantities(resum$quantity_16,7)
+
 
 ########---------------------------
 ##X2=Sales of last month:
@@ -100,7 +125,7 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 ################################################################
 
 
-DATA<- resum[183:nrow(resum),2:ncol(resum)]
+DATA<- resum[183:nrow(resum)-7,3:ncol(resum)]
 
 y <- DATA[,1]
 X <- as.matrix(DATA[,2:7])
@@ -108,3 +133,5 @@ X <- as.matrix(DATA[,2:7])
 logit <- glm( y ~ X , poisson(link='log') )
 
 summary( logit )
+
+logit
