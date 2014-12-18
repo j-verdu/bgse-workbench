@@ -152,7 +152,6 @@ fit <- preds$fit
 
 
 
-
 # Split data into training (75%) and testing (25%)
 train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
 test <- DATA[-train_idx,] # test data
