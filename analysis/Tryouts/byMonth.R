@@ -140,10 +140,8 @@ logit <- glm( formula , poisson(link='log'),data=DATA )
 summary(logit)
 tests <-resum[644,3:9]
 
-predicted<-predict(logit,tests,type="response")
+predictedGLM<-predict.glm(logit,tests,type="response")
 predicted
-
-
 
 
 
