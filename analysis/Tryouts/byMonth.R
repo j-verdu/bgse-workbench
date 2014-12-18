@@ -140,7 +140,7 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 
 DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
 
-<<<<<<< HEAD
+
 ###########################################################################
 ############  Model selection ############################################
 ##########################################################################
@@ -150,31 +150,31 @@ DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
 # Split data into training (75%) and testing (25%)
 train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
 test <- DATA[-train_idx,] # test data
-DATA <- DATA[train_idx,] # train data
+train <- DATA[train_idx,] # train data
 
 #Building formula
-b<-paste(names(DATA)[-1],collapse=" + ")
-formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
+b<-paste(names(train)[-1],collapse=" + ")
+formula <- paste0(paste0(names(train)[1]," ~ "),b) 
 
 model_percentRMSE<-rep(0,3)
 names(model_percentRMSE)<-c("GLM","GLM_Lasso","GLM_Ridge")
 
 ### Model GLM Poisson
-logit <- glm( formula , poisson(link='log'),data=DATA )
+logit <- glm( formula , poisson(link='log'),data=train )
 predicted<-predict(logit,test,type="response")
 results_<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
 model_percentRMSE[1]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson Lasso
-lasso <- cv.glmnet(as.matrix(DATA[,-1]),DATA[,1], family="poisson",alpha=1 )
+lasso <- cv.glmnet(as.matrix(train[,-1]),train[,1], family="poisson",alpha=1 )
 predicted<-as.vector(predict(lasso,as.matrix(test[,-1]),s="lambda.min"))
 results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
 model_percentRMSE[2]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson Ridge
-ridge <- cv.glmnet(as.matrix(DATA[,-1]),DATA[,1], family="poisson",alpha=0 )
+ridge <- cv.glmnet(as.matrix(train[,-1]),train[,1], family="poisson",alpha=0 )
 predicted<-as.vector(predict(ridge,as.matrix(test[,-1]),s="lambda.min"))
 results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
@@ -213,11 +213,11 @@ if (selected==1){
 ##########################################################################
 
 DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
-
-Graph<- as.data.frame(resum[183:nrow(resum)-30,1])
+# Add date id and observed sales next month
+Graph<- data.frame(date=as.Date(resum[183:nrow(resum)-30,1],origin = "1970-01-01"),Observed=resum[183:nrow(resum)-30,3])
 if (selected %in% 2:3){
     DATA<-as.matrix(DATA)
-    prediction<-predict(model,as.matrix(test[,-1]),s="lambda.min")
+    prediction<-predict(model,as.matrix(DATA[,-1]),s="lambda.min")
     Graph$PredictionX<-prediction    
 } else if (selected==1){
     predictionsYs<-predict(model,DATA,type="response",interval="predict",se.fit=TRUE)
