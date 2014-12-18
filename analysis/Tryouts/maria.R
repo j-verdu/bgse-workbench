@@ -1,5 +1,10 @@
 library(ggplot2)
 
+Sys.setenv(PKG_CPPFLAGS = "-I/usr/local/mysql/include/")
+Sys.setenv(PKG_LIBS = "-L/usr/local/mysql/lib -lmysqlclient")
+install.packages("RMySQL", type = "source")
+
+
 
 ################################################################
 ################      FUNCTIONS    #############################
@@ -126,6 +131,7 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 
 
 DATA<- resum[183:nrow(resum)-7,3:ncol(resum)]
+<<<<<<< Updated upstream
 
 # Split data into training (75%) and testing (25%)
 train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
@@ -133,8 +139,10 @@ test <- DATA[-train_idx,] # test data
 DATA <- DATA[train_idx,] # train data
 
 
+=======
+>>>>>>> Stashed changes
 y <- DATA[,1]
-X <- as.matrix(DATA[,2:7])
+X<-as.matrix(DATA[,2:7])
 
 logit <- glm( y ~ X , poisson(link='log') )
 
@@ -142,6 +150,7 @@ summary( logit )
 
 logit
 
+<<<<<<< Updated upstream
 # Validate with test data
 
 b<-paste(names(DATA)[-1],collapse=" + ")
@@ -165,4 +174,6 @@ plot(weeksGt0$date,weeksGt0$error)
 
 
 RMSE<-sqrt(mean(results$error^2))
+=======
+>>>>>>> Stashed changes
 
