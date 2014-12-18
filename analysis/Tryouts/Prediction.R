@@ -2,7 +2,7 @@
 
 
 library(ggplot2)
-library(glmnet)
+
 
 ################################################################
 ################      FUNCTIONS    #############################
@@ -61,17 +61,6 @@ Yfunction <- function(X,r){
   return(data)
 }
 
-# Validate function with test data
-validate<- function(model,test){
-    
-    predicted<-predict(model,test,type="response")
-    # generate results ordered by date
-    date<-as.integer(rownames(test))
-    results<-data.frame(date,observed=test[,1],predict=predicted,error=predicted-test[,1])
-    results<-results[order(results$date),]
-    
-    return(results)
-}
 
 
 ################################################################
@@ -141,47 +130,6 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 
 DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
 
-###########################################################################
-############  Model selection ############################################
-##########################################################################
-
-
-
-# Split data into training (75%) and testing (25%)
-train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
-test <- DATA[-train_idx,] # test data
-DATA <- DATA[train_idx,] # train data
-
-#Building formula
-b<-paste(names(DATA)[-1],collapse=" + ")
-formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
-
-model_percentRMSE<-rep(0,3)
-names(model_percentRMSE)<-c("GLM","GLM_Lasso","GLM_Ridge")
-
-### Model GLM Poisson
-logit <- glm( formula , poisson(link='log'),data=DATA )
-results<-validate(logit,test)
-RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[1]<-RMSE/mean(test[,1])
-
-### Model GLM Poisson Lasso
-lasso <- glmnet(as.matrix(test[,-1]),test[,1], family="poisson",alpha=1 )
-results<-validate(lasso,test)
-RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[2]<-RMSE/mean(test[,1])
-
-### Model GLM Poisson Ridge
-ridge <- glmnet(as.matrix(test[,-1]),test[,1], family="poisson",alpha=0 )
-results<-validate(ridge,test)
-RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[2]<-RMSE/mean(test[,1])
-
-
-### Model selection
-
-
-
 ## Predict the next month sale
 
 b<-paste(names(DATA)[-1],collapse=" + ")
@@ -192,9 +140,31 @@ logit <- glm( formula , poisson(link='log'),data=DATA )
 summary(logit)
 tests <-resum[644,3:9]
 
-predictedGLM<-predict.glm(logit,tests,type="response")
-predicted
+preds<-predict(logit,tests,type="response",interval="predict",se.fit=TRUE)
 
 
+##Critical Values
+critval <- 1.96 ## approx 95% CI
+upr <- preds$fit + (critval * preds$se.fit)
+lwr <- preds$fit - (critval * preds$se.fit)
+fit <- preds$fit
 
 
+###########################################################################
+##################  Creatting data for the Graphs ########################
+##########################################################################
+
+predictionsYs<-predict(logit,DATA,type="response",interval="predict",se.fit=TRUE)
+
+Graph<- as.data.frame(resum[183:nrow(resum)-30,1])
+Graph$PredictionX<-predictionsYs$fit
+
+
+critval <- 1.96 ## approx 95% CI
+for (i in 1:nrow(Graph)){
+  Graph$upr[i]<-predictionsYs$fit[i] + (critval * predictionsYs$se.fit[i])
+  Graph$lwr[i]<-predictionsYs$fit[i] - (critval * predictionsYs$se.fit[i])
+  
+}
+
+write.table(Graph, "graphlines.txt", sep="\t")
