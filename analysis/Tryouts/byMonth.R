@@ -2,7 +2,7 @@
 
 
 library(ggplot2)
-
+library(glmnet)
 
 ################################################################
 ################      FUNCTIONS    #############################
@@ -61,6 +61,17 @@ Yfunction <- function(X,r){
   return(data)
 }
 
+# Validate function with test data
+validate<- function(model,test){
+    
+    predicted<-predict(model,test,type="response")
+    # generate results ordered by date
+    date<-as.integer(rownames(test))
+    results<-data.frame(date,observed=test[,1],predict=predicted,error=predicted-test[,1])
+    results<-results[order(results$date),]
+    
+    return(results)
+}
 
 
 ################################################################
@@ -130,6 +141,47 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 
 DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
 
+###########################################################################
+############  Model selection ############################################
+##########################################################################
+
+
+
+# Split data into training (75%) and testing (25%)
+train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
+test <- DATA[-train_idx,] # test data
+DATA <- DATA[train_idx,] # train data
+
+#Building formula
+b<-paste(names(DATA)[-1],collapse=" + ")
+formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
+
+model_percentRMSE<-rep(0,3)
+names(model_percentRMSE)<-c("GLM","GLM_Lasso","GLM_Ridge")
+
+### Model GLM Poisson
+logit <- glm( formula , poisson(link='log'),data=DATA )
+results<-validate(logit,test)
+RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
+model_percentRMSE[1]<-RMSE/mean(test[,1])
+
+### Model GLM Poisson Lasso
+lasso <- glmnet(as.matrix(test[,-1]),test[,1], family="poisson",alpha=1 )
+results<-validate(lasso,test)
+RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
+model_percentRMSE[2]<-RMSE/mean(test[,1])
+
+### Model GLM Poisson Ridge
+ridge <- glmnet(as.matrix(test[,-1]),test[,1], family="poisson",alpha=0 )
+results<-validate(ridge,test)
+RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
+model_percentRMSE[2]<-RMSE/mean(test[,1])
+
+
+### Model selection
+
+
+
 ## Predict the next month sale
 
 b<-paste(names(DATA)[-1],collapse=" + ")
@@ -146,40 +198,3 @@ predicted
 
 
 
-# Split data into training (75%) and testing (25%)
-train_idx <- sample(1:nrow(DATA),round(nrow(DATA)*0.75),replace=FALSE)
-test <- DATA[-train_idx,] # test data
-DATA <- DATA[train_idx,] # train data
-
-
-
-# Model GLM Poisson
-
-b<-paste(names(DATA)[-1],collapse=" + ")
-formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
-
-logit <- glm( formula , poisson(link='log'),data=DATA )
-
-summary(logit)
-
-# Validate with test data
-predicted<-predict(logit,test,type="response")
-    # generate results ordered by date
-    date<-as.integer(rownames(test))
-    results<-data.frame(date,observed=test[,1],predict=predicted,error=predicted-test[,1])
-    results<-results[order(results$date),]
-
-plot(results$date,results$error)
-
-#results just for observed sales =0
-data0<-results[results$observed==0,]
-plot(data0$date,data0$error)
-
-#results just for observed sales !=0
-dataGt0<-results[results$observed!=0,]
-plot(dataGt0$date,dataGt0$error)
-
-# Root Mean Square Error
-RMSE<-sqrt(mean(results$error^2))
-RMSE/mean(test[,1])
-mean(test[,1])
