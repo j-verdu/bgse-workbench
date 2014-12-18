@@ -61,13 +61,12 @@ Yfunction <- function(X,r){
   return(data)
 }
 
-# Validate function with test data
-validate<- function(model,test){
+# Generate results data frame from predicted test data
+gen_results<- function(prediction,test){
     
-    predicted<-predict(model,test,type="response")
     # generate results ordered by date
     date<-as.integer(rownames(test))
-    results<-data.frame(date,observed=test[,1],predict=predicted,error=predicted-test[,1])
+    results<-data.frame(date,observed=test[,1],predict=prediction,error=predicted-test[,1])
     results<-results[order(results$date),]
     
     return(results)
@@ -99,7 +98,7 @@ resum$quantity_16<-resumtable(resum$days,sales_16$days,sales_16$Quantity)
 ##Y - Creation on the dependent variable:
 
 
-resum$Y_salesnextweek<-Yfunction(resum$quantity_16,30) # sales in posterior 30 days 
+resum$Y_salesNxtMonth<-Yfunction(resum$quantity_16,30) # sales in posterior 30 days 
 
 
 
@@ -162,54 +161,74 @@ names(model_percentRMSE)<-c("GLM","GLM_Lasso","GLM_Ridge")
 
 ### Model GLM Poisson
 logit <- glm( formula , poisson(link='log'),data=DATA )
-results<-validate(logit,test)
+predicted<-predict(logit,test,type="response")
+results_<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
 model_percentRMSE[1]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson Lasso
-lasso <- glmnet(as.matrix(test[,-1]),test[,1], family="poisson",alpha=1 )
-results<-validate(lasso,test)
+lasso <- cv.glmnet(as.matrix(DATA[,-1]),DATA[,1], family="poisson",alpha=1 )
+predicted<-as.vector(predict(lasso,as.matrix(test[,-1]),s="lambda.min"))
+results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
 model_percentRMSE[2]<-RMSE/mean(test[,1])
 
 ### Model GLM Poisson Ridge
-ridge <- glmnet(as.matrix(test[,-1]),test[,1], family="poisson",alpha=0 )
-results<-validate(ridge,test)
+ridge <- cv.glmnet(as.matrix(DATA[,-1]),DATA[,1], family="poisson",alpha=0 )
+predicted<-as.vector(predict(ridge,as.matrix(test[,-1]),s="lambda.min"))
+results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
-model_percentRMSE[2]<-RMSE/mean(test[,1])
-=======
->>>>>>> 0db06b618f69736d81abdf444861436100d37c44
+model_percentRMSE[3]<-RMSE/mean(test[,1])
 
+models<-list(logit,lasso,ridge)
 
 ### Model selection
 
+selected<-which(model_percentRMSE==min(model_percentRMSE))
+model<-models[[selected]]
 
 
 ## Predict the next month sale
 
-b<-paste(names(DATA)[-1],collapse=" + ")
-formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
+tests <-resum[644,3:9] #data for last day, to predict actual future sales
+if (selected %in% 2:3){tests<-as.matrix(tests[-1])}
 
-logit <- glm( formula , poisson(link='log'),data=DATA )
-
-summary(logit)
-tests <-resum[644,3:9]
-
-predictedGLM<-predict.glm(logit,tests,type="response")
-predicted
+preds<-predict(model,tests,type="response",interval="predict",se.fit=TRUE)
 
 
+##Critical Values
+if (selected==1){
+    critval <- 1.96 ## approx 95% CI
+    upr <- preds$fit + (critval * preds$se.fit)
+    lwr <- preds$fit - (critval * preds$se.fit)
+    fit <- preds$fit
+} else {
+    fit<-preds
+    upr<-NA
+    lwr<-NA
+}
+
+###########################################################################
+##################  Creatting data for the Graphs ########################
+##########################################################################
+
+DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
+
+Graph<- as.data.frame(resum[183:nrow(resum)-30,1])
+if (selected %in% 2:3){
+    DATA<-as.matrix(DATA)
+    prediction<-predict(model,as.matrix(test[,-1]),s="lambda.min")
+    Graph$PredictionX<-prediction    
+} else if (selected==1){
+    predictionsYs<-predict(model,DATA,type="response",interval="predict",se.fit=TRUE)
+        Graph$PredictionX<-predictionsYs$fit
+    critval <- 1.96 ## approx 95% CI
+    for (i in 1:nrow(Graph)){
+        Graph$upr[i]<-predictionsYs$fit[i] + (critval * predictionsYs$se.fit[i])
+        Graph$lwr[i]<-predictionsYs$fit[i] - (critval * predictionsYs$se.fit[i])
+    }
+}
 
 
-<<<<<<< HEAD
-=======
-# Root Mean Square Error
-RMSE<-sqrt(mean(results$error^2))
-RMSE/mean(test[,1])
-mean(test[,1])
+write.table(Graph, "graphlines.txt", sep="\t")
 
-
-
-
-
->>>>>>> 0db06b618f69736d81abdf444861436100d37c44
