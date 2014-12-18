@@ -162,7 +162,7 @@ names(model_percentRMSE)<-c("GLM","GLM_Lasso","GLM_Ridge")
 ### Model GLM Poisson
 logit <- glm( formula , poisson(link='log'),data=train )
 predicted<-predict(logit,test,type="response")
-results_<-gen_results(predicted,test)
+results<-gen_results(predicted,test)
 RMSE<-sqrt(mean(results$error^2)) # Root Mean Square Error
 model_percentRMSE[1]<-RMSE/mean(test[,1])
 
