@@ -45,6 +45,12 @@ group by O.OrderDate;
 
 
 
+##Number of products with most of the sales
+select count(D.Quantity) As Quantity, P.ProductID
+from order_details D, products P, orders O
+where D.ProductID=P.ProductID
+and D.OrderID=O.OrderID
+group by P.ProductID;
 
 select OrderDate
 from orders
