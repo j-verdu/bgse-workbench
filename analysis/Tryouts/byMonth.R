@@ -130,26 +130,6 @@ resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quant
 
 DATA<- resum[183:nrow(resum)-30,3:ncol(resum)]
 
-## Predict the next month sale
-
-b<-paste(names(DATA)[-1],collapse=" + ")
-formula <- paste0(paste0(names(DATA)[1]," ~ "),b) 
-
-logit <- glm( formula , poisson(link='log'),data=DATA )
-
-summary(logit)
-tests <-resum[644,3:9]
-
-preds<-predict(logit,tests,type="response",interval="predict",se.fit=TRUE)
-predicted
-
-##Critical Values
-critval <- 1.96 ## approx 95% CI
-upr <- preds$fit + (critval * preds$se.fit)
-lwr <- preds$fit - (critval * preds$se.fit)
-fit <- preds$fit
-
-
 
 
 # Split data into training (75%) and testing (25%)
@@ -189,3 +169,8 @@ plot(dataGt0$date,dataGt0$error)
 RMSE<-sqrt(mean(results$error^2))
 RMSE/mean(test[,1])
 mean(test[,1])
+
+
+
+
+
