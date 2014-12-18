@@ -140,8 +140,15 @@ logit <- glm( formula , poisson(link='log'),data=DATA )
 summary(logit)
 tests <-resum[644,3:9]
 
-predictedGLM<-predict.glm(logit,tests,type="response")
+preds<-predict(logit,tests,type="response",interval="predict",se.fit=TRUE)
 predicted
+
+##Critical Values
+critval <- 1.96 ## approx 95% CI
+upr <- preds$fit + (critval * preds$se.fit)
+lwr <- preds$fit - (critval * preds$se.fit)
+fit <- preds$fit
+
 
 
 
