@@ -1,7 +1,7 @@
 
 DROP DATABASE IF EXISTS ecommerce;
-
 CREATE database ecommerce;
+
 
 USE ecommerce;
 
@@ -268,14 +268,6 @@ create table table2_top1 (
     Quantity int(225)
 );
 
-INSERT INTO table2_top1 (OrderDate,Quantity)
-    select 
-		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
-    from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=60
-group by O.OrderDate;
-
 
 
 ##2nd product
@@ -286,13 +278,7 @@ create table table2_top2 (
     Quantity int(225)
 );
 
-INSERT INTO table2_top2 (OrderDate,Quantity)
-    select 
-		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
-    from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=59
-group by O.OrderDate;
+
 
 ##3rd product
 drop table if exists table2_top3;
@@ -301,15 +287,6 @@ create table table2_top3 (
 	OrderDate  date,
     Quantity int(225)
 );
-
-INSERT INTO table2_top3 (OrderDate,Quantity)
-    select 
-		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
-    from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=31
-group by O.OrderDate;
-
 
 
 ##4rd product
@@ -320,14 +297,6 @@ create table table2_top4 (
     Quantity int(225)
 );
 
-INSERT INTO table2_top4 (OrderDate,Quantity)
-    select 
-		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
-    from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=56
-group by O.OrderDate;
-
 ##5rd product
 drop table if exists table2_top5;
 
@@ -336,11 +305,110 @@ create table table2_top5 (
     Quantity int(225)
 );
 
-INSERT INTO table2_top5 (OrderDate,Quantity)
-    select 
-		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
-    from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=16
-group by O.OrderDate;
+
+
+
+
+######################
+####### TABLE 1 ######
+
+##1st
+drop table if exists table1_top1;
+
+create table table1_top1 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+##2st
+drop table if exists table1_top2;
+
+create table table1_top2 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##3st
+drop table if exists table1_top3;
+
+create table table1_top3 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##4st
+drop table if exists table1_top4;
+
+create table table1_top4 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+##5st
+drop table if exists table1_top5;
+
+create table table1_top5 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+
+
+######################
+####### TABLE 3 ######
+
+##1st
+drop table if exists table3_top1;
+
+create table table3_top1 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##2st
+drop table if exists table3_top2;
+
+create table table3_top2 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##3st
+drop table if exists table3_top3;
+
+create table table3_top3 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##4st
+drop table if exists table3_top4;
+
+create table table3_top4 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+##5st
+drop table if exists table3_top5;
+
+create table table3_top5 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+drop table if exists TopResum;
+
+create table TopResum(
+  `CategoryName` varchar(15),
+  `ProductID` int (11)
+);
+
+
+	
 
