@@ -126,6 +126,15 @@ UNLOCK TABLES;
 
 ##Insert analysis data
 
+LOCK TABLES `TopResum` WRITE;
+
+INSERT INTO `TopResum` VALUES ('Top1',60),('Top2',59),('Top3',31),('Top4',56),('Top5',16);
+
+UNLOCK TABLES;
+
+
+
+
 
 INSERT INTO table2_top1 (OrderDate,Quantity)
     select 
@@ -276,3 +285,6 @@ INSERT INTO table3_top5 (OrderDate,Quantity)
 where D.ProductID=P.ProductID and P.CategoryID<>3 and P.ProductID <> 16
 and D.OrderID=O.OrderID
 group by O.OrderDate;
+
+
+

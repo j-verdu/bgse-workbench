@@ -1,7 +1,7 @@
 
 DROP DATABASE IF EXISTS ecommerce;
-
 CREATE database ecommerce;
+
 
 USE ecommerce;
 
@@ -402,4 +402,13 @@ create table table3_top5 (
 );
 
 
+drop table if exists TopResum;
+
+create table TopResum(
+  `CategoryName` varchar(15),
+  `ProductID` int (11)
+);
+
+
+	
 
