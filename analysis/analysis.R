@@ -35,6 +35,7 @@ resumtable<- function(X,YD,YQ){
             data[i]<-YQ[k]
             k<-k+1
         }
+        if (k==length(YD)+1){break}
     }
     return(data)
 }
@@ -199,7 +200,8 @@ do_predict<-function(model,tests,selected){
         upr<-NA
         lwr<-NA
     }
-    return(c(fit,upr,lwr))
+    
+    return(c(max(0,fit),max(0,upr),max(0,lwr)))
 }
 
 # Generates data for times series graph to check model behaviour
@@ -268,12 +270,14 @@ for (i in top:1){
     tests <-data[dim(data)[1],3:9] #data for last day, to predict actual future sales
     if (selected %in% 3:4){tests<-as.matrix(tests[-1])} # format for Lasso and Ridge
     
+    
     predict_sales[i,]<-c(i,top_prods[i,2],do_predict(model,tests,selected))
     
 # table <- summary(model)$coefficients if we wanted coefficients
 
 }
 
+predict_sales<-round(predict_sales)
 # export table, to be done in SQL
 write.table(predict_sales, "predict_sales.txt", sep="\t")
 
