@@ -410,5 +410,15 @@ create table TopResum(
 );
 
 
-	
+
+drop table if exists PredictionStock;
+
+create table PredictionStock(
+  `Ranking` int(11),
+  `ProductID` int (11),
+  `Predicted` float(5),
+  `Max_Predict` float(5),
+  `Min_Predict` float(5)
+  
+);
 
