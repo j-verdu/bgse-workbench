@@ -344,3 +344,185 @@ INSERT INTO table2_top5 (OrderDate,Quantity)
     where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=16
 group by O.OrderDate;
 
+
+
+
+######################
+####### TABLE 1 ######
+
+##1st
+drop table if exists table1_top1;
+
+create table table1_top1 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table1_top1 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID=4 and P.ProductID <> 60
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##2st
+drop table if exists table1_top2;
+
+create table table1_top2 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table1_top2 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID=4 and P.ProductID <> 59
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##3st
+drop table if exists table1_top3;
+
+create table table1_top3 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table1_top3 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID=4 and P.ProductID <> 31
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##4st
+drop table if exists table1_top4;
+
+create table table1_top4 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table1_top4 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID=5 and P.ProductID <> 56
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##5st
+drop table if exists table1_top5;
+
+create table table1_top5 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table1_top5 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID=3 and P.ProductID <> 16
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+
+
+######################
+####### TABLE 3 ######
+
+##1st
+drop table if exists table3_top1;
+
+create table table3_top1 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table3_top1 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID<>4 and P.ProductID <> 60
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##2st
+drop table if exists table3_top2;
+
+create table table3_top2 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table3_top2 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID<>4 and P.ProductID <> 59
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##3st
+drop table if exists table3_top3;
+
+create table table3_top3 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table3_top3 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID<>4 and P.ProductID <> 31
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##4st
+drop table if exists table3_top4;
+
+create table table3_top4 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table3_top4 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID<>5 and P.ProductID <> 56
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+##5st
+drop table if exists table3_top5;
+
+create table table3_top5 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+INSERT INTO table3_top5 (OrderDate,Quantity)
+    select 
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
+    from order_details D, products P, orders O
+where D.ProductID=P.ProductID and P.CategoryID<>3 and P.ProductID <> 16
+and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+
