@@ -278,11 +278,11 @@ for (i in top:1){
 }
 
 predict_sales<-round(predict_sales)
-# export table, to be done in SQL
-write.table(predict_sales, "predict_sales.txt", sep="\t")
-
-dbWriteTable(conn = con, name = 'predict_sales', value = as.data.frame(predict_sales))
-
+for( i in 1:length(prediction) ){
+  cat('.')  
+  query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
+  query = dbSendQuery(db, query )
+}
 
 # Top 1 model is in memory once finished the loop
 # Create past time series with predictions and observations for this top product
