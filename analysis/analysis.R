@@ -66,7 +66,7 @@ gen_results<- function(prediction,test){
     
     # generate results ordered by date
     date<-as.integer(rownames(test))
-    results<-data.frame(date,observed=test[,1],predict=prediction,error=predicted-test[,1])
+    results<-data.frame(date,observed=test[,1],predict=prediction,error=prediction-test[,1])
     results<-results[order(results$date),]
     
     return(results)
@@ -79,22 +79,19 @@ read_gen_data<-function(i,db,days_forecast){
     
     # sales of product of the same category
     query<-paste0("SELECT * from table1_top",as.character(i))
-    result = dbGetQuery(db, query)
-    sales_scat = fetch(result, n=-1)
+    sales_scat = dbGetQuery(db, query)
     
     # sales of product i
     query<-paste0("SELECT * from table2_top",as.character(i))
-    result = dbGetQuery(db, query)
-    sales_i = fetch(result, n=-1)    
+    sales_i = dbGetQuery(db, query)    
     
     # sales of other categories, adding all products of each category
     query<-paste0("SELECT * from table3_top",as.character(i))
-    result = dbGetQuery(db, query)
-    sales_cats = fetch(result, n=-1)  
+    sales_cats = dbGetQuery(db, query)  
     
-    sales_scat$days <- as.integer(as.Date(sales_scat[,2], format= "%Y-%m-%d"))
-    sales_i$days <- as.integer(as.Date(sales_i[,2], format= "%Y-%m-%d"))
-    sales_cats$days <- as.integer(as.Date(sales_cats[,2], format= "%Y-%m-%d"))
+    sales_scat$days <- as.integer(as.Date(sales_scat[,1], format= "%Y-%m-%d"))
+    sales_i$days <- as.integer(as.Date(sales_i[,1], format= "%Y-%m-%d"))
+    sales_cats$days <- as.integer(as.Date(sales_cats[,1], format= "%Y-%m-%d"))
     
     #Create resum table
     resum <-data.frame(seq(as.integer(as.Date("1996-07-04", format= "%Y-%m-%d")),as.integer(as.Date("1998-05-06", format= "%Y-%m-%d")),1))
@@ -177,7 +174,7 @@ model_selection<-function (DATA) {
     selected<-which(model_percentRMSE==min(model_percentRMSE))
     model<-models[[selected]]
     
-    return(list(model,model_percentRMSE[selected]),selected)
+    return(list(model,model_percentRMSE[selected],selected))
     #returns the model, its percentRMSE in validation, and a number 
     #which identifies type of model (1,2,3,4)=(linear,GLM,GLMLasso,GLMRidge)
 }
@@ -188,12 +185,16 @@ do_predict<-function(model,tests,selected){
     preds<-predict(model,tests,type="response",interval="predict",se.fit=TRUE)
 
     ##Critical Values
-    if (selected<3){ # GLM or Lasso
+    if (selected==2){ # GLM 
         critval <- 1.96 ## approx 95% CI
         upr <- preds$fit + (critval * preds$se.fit)
         lwr <- preds$fit - (critval * preds$se.fit)
         fit <- preds$fit
-    } else {
+    } else if (selected==1){
+      fit<-preds$fit[1]
+      lwr<-preds$fit[2]
+      upr<-preds$fit[3]
+    } else {# GLM or Lasso
         fit<-preds
         upr<-NA
         lwr<-NA
@@ -232,17 +233,17 @@ gen_graph_data<-function(DATA,model,selected){
 db = dbConnect(MySQL(), user='root', password='root', dbname='ecommerce', host='localhost')
 
 # Analysis for every top-10 best-sellers product
-top<-10
+top<-5
 max_backwards<-180 #number of backward days needed to calculate features for a particular day
 days_forecast<-30 # the output will be forecast sales for a product along next
                 # 'days_forescast' days
 
-result = dbGetQuery(db, "SELECT * from TopResum")
-top_prods <- fetch(result, n=-1)
+top_prods = dbGetQuery(db, "SELECT * from TopResum")
+
 
 # Create variable to include predicted sales for all top products
 predict_sales<-matrix(0,top,5)
-predict_sales<-as.data.frame(predict)
+predict_sales<-as.data.frame(predict_sales)
 names(predict_sales)<-c("Ranking","ProdId","Predicted","Max_Predict","Min_Predict")
 
 
@@ -251,19 +252,20 @@ for (i in top:1){
     
     data<-read_gen_data(i,db,days_forecast)
 
-    DATA<- data[max_backwards:nrow(resum)-days_forecast,3:ncol(resum)]
+    DATA<- data[max_backwards:nrow(data)-days_forecast,3:ncol(data)]
     # subset feasible data to generate models (first days discarded, 
     # unable to generate proper X because need more backwards days)
     # last days discarded because can't calculate forecast sales 
     # in 'days_forecast' horizon
-
+    
     # Try models and pick the one with lowest percentRMSE in validation
-    model<-model_selection(DATA)[[1]]
-    RMSE<-model_selection(DATA)[[2]]
-    selected<-model_selection(DATA)[[3]] #1:linear, 2:GLM, 3:GLMLasso, 4:GLM Ridge
+    res<-model_selection(DATA)
+    model<-res[[1]]
+    RMSE<-res[[2]]
+    selected<-res[[3]] #1:linear, 2:GLM, 3:GLMLasso, 4:GLM Ridge
 
     # Predict next 'days_forecast' sales for last day
-    tests <-data[644,3:9] #data for last day, to predict actual future sales
+    tests <-data[dim(data)[1],3:9] #data for last day, to predict actual future sales
     if (selected %in% 3:4){tests<-as.matrix(tests[-1])} # format for Lasso and Ridge
     
     predict_sales[i,]<-c(i,top_prods[i,2],do_predict(model,tests,selected))
