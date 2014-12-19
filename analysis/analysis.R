@@ -237,6 +237,9 @@ max_backwards<-180 #number of backward days needed to calculate features for a p
 days_forecast<-30 # the output will be forecast sales for a product along next
                 # 'days_forescast' days
 
+result = dbGetQuery(db, "SELECT * from TopResum")
+top_prods <- fetch(result, n=-1)
+
 # Create variable to include predicted sales for all top products
 predict_sales<-matrix(0,top,5)
 predict_sales<-as.data.frame(predict)
@@ -263,7 +266,7 @@ for (i in top:1){
     tests <-data[644,3:9] #data for last day, to predict actual future sales
     if (selected %in% 3:4){tests<-as.matrix(tests[-1])} # format for Lasso and Ridge
     
-    predict_sales[i,]<-c(i,0,do_predict(model,tests,selected))
+    predict_sales[i,]<-c(i,top_prods[i,2],do_predict(model,tests,selected))
     
 # table <- summary(model)$coefficients if we wanted coefficients
 
@@ -272,10 +275,15 @@ for (i in top:1){
 # export table, to be done in SQL
 write.table(predict_sales, "predict_sales.txt", sep="\t")
 
+dbWriteTable(conn = con, name = 'predict_sales', value = as.data.frame(predict_sales))
+
+
 # Top 1 model is in memory once finished the loop
 # Create past time series with predictions and observations for this top product
 
 Graph_data<-gen_graph_data(DATA,model,selected)
+dbWriteTable(conn = con, name = 'graph_data', value = as.data.frame(Graph_data))
+
 
 write.table(Graph, "graphlines.txt", sep="\t")
 
