@@ -220,7 +220,11 @@ CREATE TABLE `suppliers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
+DROP TABLE IF EXISTS `analysis_data_table`;
+
 CREATE TABLE `analysis_data_table` (
+  `date`  date DEFAULT NULL,
   `y`   float(5) NOT NULL,
   `x01` float(5) DEFAULT NULL,
   `x02` float(5) DEFAULT NULL,
@@ -250,3 +254,7 @@ CREATE TABLE `analysis_prob` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*CREATE TABLE `analsys_analytics_estimates` ()*/
+
+CREATE TABLE `calendars` (
+  `date`  date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
