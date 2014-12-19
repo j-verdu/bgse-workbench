@@ -37,3 +37,13 @@ for( i in 1:length(x) ){
  query = dbSendQuery(db, query )
 }
 
+
+##connection
+prediction <-read.table("predict_sales.txt")
+
+
+for( i in 1:length(prediction) ){
+  cat('.')  
+  query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
+  query = dbSendQuery(db, query )
+}
