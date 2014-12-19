@@ -224,7 +224,6 @@ CREATE TABLE `suppliers` (
 DROP TABLE IF EXISTS `analysis_data_table`;
 
 CREATE TABLE `analysis_data_table` (
-  `date`  date DEFAULT NULL,
   `y`   float(5) NOT NULL,
   `x01` float(5) DEFAULT NULL,
   `x02` float(5) DEFAULT NULL,
@@ -255,6 +254,43 @@ CREATE TABLE `analysis_prob` (
 
 /*CREATE TABLE `analsys_analytics_estimates` ()*/
 
-CREATE TABLE `calendars` (
-  `date`  date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+## Create procedure for quan products
+drop table if exists productQT;
+
+create table productQT (
+	dates  date,
+    qty int(225)
+);
+
+
+DROP VIEW IF EXISTS product;
+##Recuperar cantidades y fechas de los productos
+
+CREATE VIEW product AS
+SELECT 
+		sum(D.Quantity) As Quantity,
+		date_format(o.OrderDate, '%Y-%m-%d') As OrderDate
+From order_details D, products P, orders O
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID
+group by O.OrderDate;
+
+
+
+
+DROP PROCEDURE IF EXISTS prodQt;
+
+
+DELIMITER //
+CREATE PROCEDURE prodQt (productID int)
+BEGIN
+    INSERT INTO productQT (dates, qty)
+    select 
+		OrderDate as dates,
+		Quantity as qty
+    from product;
+    
+END
+//
+
+DELIMITER ;
