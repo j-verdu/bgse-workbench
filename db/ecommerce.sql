@@ -256,18 +256,22 @@ CREATE TABLE `analysis_prob` (
 /*CREATE TABLE `analsys_analytics_estimates` ()*/
 
 
-## TOP Products
-drop table if exists table1_top1;
+## TOP Products###
+##################
 
-create table table1_top1 (
-	dates  date,
-    qty int(225)
+
+
+drop table if exists table2_top1;
+
+create table table2_top1 (
+	OrderDate  date,
+    Quantity int(225)
 );
 
-INSERT INTO table1_top1 (dates,qty)
+INSERT INTO table2_top1 (OrderDate,Quantity)
     select 
-		O.OrderDate as dates,
-        sum(D.Quantity*D.UnitPrice) as qty
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
     where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=60
 group by O.OrderDate;
@@ -275,33 +279,33 @@ group by O.OrderDate;
 
 
 ##2nd product
-drop table if exists table1_top2;
+drop table if exists table2_top2;
 
-create table table1_top2 (
-	dates  date,
-    qty int(225)
+create table table2_top2 (
+	OrderDate  date,
+    Quantity int(225)
 );
 
-INSERT INTO table1_top2 (dates,qty)
+INSERT INTO table2_top2 (OrderDate,Quantity)
     select 
-		O.OrderDate as dates,
-        sum(D.Quantity*D.UnitPrice) as qty
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
     where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=59
 group by O.OrderDate;
 
 ##3rd product
-drop table if exists table1_top3;
+drop table if exists table2_top3;
 
-create table table1_top3 (
-	dates  date,
-    qty int(225)
+create table table2_top3 (
+	OrderDate  date,
+    Quantity int(225)
 );
 
-INSERT INTO table1_top3 (dates,qty)
+INSERT INTO table2_top3 (OrderDate,Quantity)
     select 
-		O.OrderDate as dates,
-        sum(D.Quantity*D.UnitPrice) as qty
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
     where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=31
 group by O.OrderDate;
@@ -309,33 +313,33 @@ group by O.OrderDate;
 
 
 ##4rd product
-drop table if exists table1_top4;
+drop table if exists table2_top4;
 
-create table table1_top4 (
-	dates  date,
-    qty int(225)
+create table table2_top4 (
+	OrderDate  date,
+    Quantity int(225)
 );
 
-INSERT INTO table1_top4 (dates,qty)
+INSERT INTO table2_top4 (OrderDate,Quantity)
     select 
-		O.OrderDate as dates,
-        sum(D.Quantity*D.UnitPrice) as qty
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
     where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=56
 group by O.OrderDate;
 
 ##5rd product
-drop table if exists table1_top5;
+drop table if exists table2_top5;
 
-create table table1_top5 (
-	dates  date,
-    qty int(225)
+create table table2_top5 (
+	OrderDate  date,
+    Quantity int(225)
 );
 
-INSERT INTO table1_top5 (dates,qty)
+INSERT INTO table2_top5 (OrderDate,Quantity)
     select 
-		O.OrderDate as dates,
-        sum(D.Quantity*D.UnitPrice) as qty
+		O.OrderDate as OrderDate,
+        sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
     where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=16
 group by O.OrderDate;
