@@ -568,6 +568,6 @@ drop table if exists ModelSumm;
 create table ModelSumm(
 	`Ranking` int(11),
 	`ProdID` int (11),
-	`Model` float(5),
-  `ValidatioRMSE` float(5)
+	`Model` varchar(15),
+  `ValidationRMSE` float(5)
 );
