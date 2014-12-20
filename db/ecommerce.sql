@@ -552,7 +552,8 @@ create table GraphPredictions(
   `Observed` int (11),
   `PredictionX` float(5),
   `upr` float(5),
-  `lwr` float(5)
+  `lwr` float(5),
+  `IntDay` float(5)
 );
 
 drop table if exists TopProducts;
