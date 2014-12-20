@@ -483,21 +483,24 @@ create table OrderAdvertise (
 	`Situation` varchar(10),
 	`Addressed` varchar(11),
 	`ProductID` int(11),
-	`StockPredicted` float(5)
+	`StockPredicted` float(5),
+	`UnitsStock` float(5)
 );
 
-insert into OrderAdvertise (Situation,Addressed,ProductID,StockPredicted)
+insert into OrderAdvertise (Situation,Addressed,ProductID,StockPredicted,UnitsStock)
 select 'Order to' As Situation,
 		S.CompanyName As Addressed,
 		PS.ProductID As ProductID,	
-		PS.Predicted As StockPredicted
+		PS.Predicted As StockPredicted,
+		P.UnitsInStock As UnitsStock
 from PredictionStock PS, products P, suppliers S
 where PS.ProductID=P.ProductID and P.UnitsInStock<PS.Predicted and S.SupplierID=P.SupplierID
 UNION all
 select 'Advertise to' As Situation,
 	SR.CustomerID As Addressed,
 	PS.ProductID As ProductID,
-	PS.Predicted As StockPredicted
+	PS.Predicted As StockPredicted,
+		P.UnitsInStock As UnitsStock
 from PredictionStock PS, products P, (select * from 
 (select * from sumresults order by `ProductID`, Quantity desc, CustomerID) x
 group by `ProductID`) SR

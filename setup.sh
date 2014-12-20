@@ -36,6 +36,7 @@ run)
 	R CMD BATCH --vanilla analysis/analysis.R 
 	cat analysis.Rout
 	rm analysis.Rout
+	mysql -u $user -p$pswd -e "call resum(10)" ecommerce
 
 	;;
 
