@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 <head>
-	<title>MyApp</title>    
+	<title>One-month forecast stock optimization</title>    
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <script>
@@ -62,8 +62,9 @@ function show_content(optionsId) {
 			<h2>Home</h2>
 
 			<p>
-			Here you have to describe what your app is about. Use approximately 200 words to summarise what is the service you are providing.
-			Add links to external sources like <a href="http://www.wikipedia.org" target="_blank">Wikipedia</a> if needed.
+			This project aims to predict actual stock needs for top-ten sales products, by predicting next month sales.
+            For each product, it shows the prediction, the actual stock, and then if there is overstock, the supplier contact. On the contrary, if there is overstock, the best client for this product according to past sales.
+            For each product, the predictive model is the one with less validation error, chosen from: simple linear regression, GLM, GLM Poisson Lasso, GLM Poisson Ridge. Model features are different time horizon sales for the particular product, together with same features but applied to the overall of other products in its category, and to the overall of other products of other categories.
 			</p>
 		</div>	
 
@@ -71,7 +72,7 @@ function show_content(optionsId) {
 	
 	</div>
 
-	<div id="footer">My App </div>
+	<div id="footer">Stock optimization </div>
 
 </body>
 </html>
