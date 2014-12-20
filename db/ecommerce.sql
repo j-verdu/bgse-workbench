@@ -539,6 +539,16 @@ create table PredictionStock(
   `Predicted` float(5),
   `Max_Predict` float(5),
   `Min_Predict` float(5)
-  
 );
 
+
+
+drop table if exists GraphPredictions;
+
+create table GraphPredictions(
+  `Date` DATE,
+  `Observed` int (11),
+  `PredictionX` float(5),
+  `upr` float(5),
+  `lwr` float(5)
+);
