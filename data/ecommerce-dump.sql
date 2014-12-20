@@ -126,305 +126,375 @@ UNLOCK TABLES;
 
 ##Insert analysis data
 
-#LOCK TABLES `TopResum` WRITE;
 
-INSERT INTO `TopResum` VALUES ('Top1',60),('Top2',59),('Top3',31),('Top4',56),('Top5',16);
+INSERT INTO `TopCategories` (Quantity,ProductID,CategoryID)
+	select 
+        sum(D.Quantity*D.UnitPrice) As Quantity,
+        P.ProductID As ProductID,
+        P.CategoryID As CategoryID
+from order_details D, products P
+where D.ProductID=P.ProductID
+group by P.ProductID;
 
-#UNLOCK TABLES;
+
+
+Insert into `TopResum` (top,CategoryName, ProductID)
+SELECT 
+	COUNT(t2.Quantity) AS top,
+    t1.CategoryID As CategoryName,
+    t1.ProductID As ProductID
+FROM TopCategories t1 
+JOIN TopCategories t2 ON t1.Quantity < t2.Quantity OR (t1.Quantity=t2.Quantity and t1.ProductID = t2.ProductID) 
+GROUP BY t1.ProductID, t1.Quantity 
+ORDER BY t1.Quantity DESC, t1.ProductID DESC;
 
 
 
+#### Top tables
+
+
+select * from TopCategories;
+select* from TopResum;
 
 
 INSERT INTO table2_top1 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=60
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=1)
 group by O.OrderDate;
 
+
 INSERT INTO table2_top2 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=59
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=2)
 group by O.OrderDate;
 
 
 INSERT INTO table2_top3 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=31
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=3)
 group by O.OrderDate;
 
 
 INSERT INTO table2_top4 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=56
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=4)
 group by O.OrderDate;
+
 
 
 INSERT INTO table2_top5 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=16
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=5)
 group by O.OrderDate;
 
+
 INSERT INTO table2_top6 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=75
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=6)
 group by O.OrderDate;
 
 
 INSERT INTO table2_top7 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=24
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=7)
 group by O.OrderDate;
+
 
 INSERT INTO table2_top8 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=40
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=8)
 group by O.OrderDate;
+
 
 INSERT INTO table2_top9 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=62
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=9)
 group by O.OrderDate;
+
 
 INSERT INTO table2_top10 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-    where D.ProductID=P.ProductID and D.OrderID=O.OrderID and D.ProductID=2
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID in(select ProductID from TopResum where top=10)
 group by O.OrderDate;
 
+
+
+
+
+#######Table 1
 
 
 INSERT INTO table1_top1 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=4 and P.ProductID <> 60
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=1) and
+P.CategoryID in(select CategoryName from TopResum where top=1)
 group by O.OrderDate;
 
 
 INSERT INTO table1_top2 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=4 and P.ProductID <> 59
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=2) and
+P.CategoryID in(select CategoryName from TopResum where top=2)
 group by O.OrderDate;
 
 
 INSERT INTO table1_top3 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=4 and P.ProductID <> 31
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=3) and
+P.CategoryID in(select CategoryName from TopResum where top=3)
 group by O.OrderDate;
 
 
-
 INSERT INTO table1_top4 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=5 and P.ProductID <> 56
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=4) and
+P.CategoryID in(select CategoryName from TopResum where top=4)
 group by O.OrderDate;
 
 
 INSERT INTO table1_top5 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=3 and P.ProductID <> 16
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=5) and
+P.CategoryID in(select CategoryName from TopResum where top=5)
 group by O.OrderDate;
 
 
 INSERT INTO table1_top6 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=1 and P.ProductID <> 75
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=6) and
+P.CategoryID in(select CategoryName from TopResum where top=6)
 group by O.OrderDate;
 
 
 INSERT INTO table1_top7 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=1 and P.ProductID <> 24
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=7) and
+P.CategoryID in(select CategoryName from TopResum where top=7)
 group by O.OrderDate;
 
-
 INSERT INTO table1_top8 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=8 and P.ProductID <> 40
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=8) and
+P.CategoryID in(select CategoryName from TopResum where top=8)
 group by O.OrderDate;
 
 
 INSERT INTO table1_top9 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=3 and P.ProductID <> 62
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=9) and
+P.CategoryID in(select CategoryName from TopResum where top=9)
 group by O.OrderDate;
+
 
 
 INSERT INTO table1_top10 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID=1 and P.ProductID <> 2
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=10) and
+P.CategoryID in(select CategoryName from TopResum where top=10)
 group by O.OrderDate;
 
 
 
+###
 
 
 
 INSERT INTO table3_top1 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>4 and P.ProductID <> 60
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=1) and
+P.CategoryID not in(select CategoryName from TopResum where top=1)
 group by O.OrderDate;
+
 
 
 INSERT INTO table3_top2 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>4 and P.ProductID <> 59
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=2) and
+P.CategoryID not in(select CategoryName from TopResum where top=2)
 group by O.OrderDate;
+
 
 
 
 INSERT INTO table3_top3 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>4 and P.ProductID <> 31
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=3) and
+P.CategoryID not in(select CategoryName from TopResum where top=3)
 group by O.OrderDate;
+
 
 
 
 INSERT INTO table3_top4 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>5 and P.ProductID <> 56
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=4) and
+P.CategoryID not in(select CategoryName from TopResum where top=4)
 group by O.OrderDate;
 
 
+
 INSERT INTO table3_top5 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>3 and P.ProductID <> 16
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=5) and
+P.CategoryID not in(select CategoryName from TopResum where top=5)
 group by O.OrderDate;
 
 
 INSERT INTO table3_top6 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>1 and P.ProductID <> 75
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=6) and
+P.CategoryID not in(select CategoryName from TopResum where top=6)
 group by O.OrderDate;
+
 
 
 INSERT INTO table3_top7 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>1 and P.ProductID <> 24
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=7) and
+P.CategoryID not in(select CategoryName from TopResum where top=7)
 group by O.OrderDate;
 
 
+
 INSERT INTO table3_top8 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>8 and P.ProductID <> 40
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=8) and
+P.CategoryID not in(select CategoryName from TopResum where top=8)
 group by O.OrderDate;
 
 
 INSERT INTO table3_top9 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>3 and P.ProductID <> 62
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=9) and
+P.CategoryID not in(select CategoryName from TopResum where top=9)
 group by O.OrderDate;
+
 
 
 INSERT INTO table3_top10 (OrderDate,Quantity)
-    select 
+select 
 		O.OrderDate as OrderDate,
         sum(D.Quantity*D.UnitPrice) as Quantity
     from order_details D, products P, orders O
-where D.ProductID=P.ProductID and P.CategoryID<>1 and P.ProductID <> 2
-and D.OrderID=O.OrderID
+where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
+P.ProductID not in(select ProductID from TopResum where top=10) and
+P.CategoryID not in(select CategoryName from TopResum where top=10)
 group by O.OrderDate;
+
 

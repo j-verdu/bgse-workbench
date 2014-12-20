@@ -525,6 +525,7 @@ create table table3_top10 (
 drop table if exists TopResum;
 
 create table TopResum(
+	`top` int(11),
   `CategoryName` varchar(15),
   `ProductID` int (11)
 );
@@ -551,4 +552,12 @@ create table GraphPredictions(
   `PredictionX` float(5),
   `upr` float(5),
   `lwr` float(5)
+);
+
+drop table if exists TopCategories;
+
+create table TopCategories(
+	`Quantity` int(11),
+  `ProductID` int (11),
+  `CategoryID` float(5)
 );
