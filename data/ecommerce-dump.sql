@@ -382,56 +382,56 @@ DELIMITER ;
 
 
 call table3(1);
-INSERT INTO table1_top1 (OrderDate,Quantity) 
+INSERT INTO table3_top1 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(2);
-INSERT INTO table1_top2 (OrderDate,Quantity) 
+INSERT INTO table3_top2 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
     
 call table3(3);
-INSERT INTO table1_top3 (OrderDate,Quantity) 
+INSERT INTO table3_top3 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(4);
-INSERT INTO table1_top4 (OrderDate,Quantity) 
+INSERT INTO table3_top4 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(5);
-INSERT INTO table1_top5 (OrderDate,Quantity) 
+INSERT INTO table3_top5 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(6);
-INSERT INTO table1_top6 (OrderDate,Quantity) 
+INSERT INTO table3_top6 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(7);
-INSERT INTO table1_top7 (OrderDate,Quantity) 
+INSERT INTO table3_top7 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(8);
-INSERT INTO table1_top8 (OrderDate,Quantity) 
+INSERT INTO table3_top8 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
@@ -439,7 +439,7 @@ INSERT INTO table1_top8 (OrderDate,Quantity)
     
     
 call table3(9);
-INSERT INTO table1_top9 (OrderDate,Quantity) 
+INSERT INTO table3_top9 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
@@ -447,7 +447,7 @@ INSERT INTO table1_top9 (OrderDate,Quantity)
     
     
 call table3(10);
-INSERT INTO table1_top10 (OrderDate,Quantity) 
+INSERT INTO table3_top10 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
