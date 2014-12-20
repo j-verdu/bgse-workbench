@@ -126,11 +126,12 @@ UNLOCK TABLES;
 
 ##Insert analysis data
 
-INSERT INTO `TopProducts` (Quantity,ProductID,CategoryID)
+INSERT INTO `TopProducts` (Quantity,ProductID,CategoryID,ProductName)
 	select 
         sum(D.Quantity*D.UnitPrice) As Quantity,
         P.ProductID As ProductID,
-        P.CategoryID As CategoryID
+        P.CategoryID As CategoryID,
+        P.ProductName As ProductName
 from order_details D, products P
 where D.ProductID=P.ProductID
 group by P.ProductID;
