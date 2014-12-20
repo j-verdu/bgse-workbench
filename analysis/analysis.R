@@ -335,7 +335,7 @@ model_summ[,2]<-as.numeric(model_summ[,2])
 model_summ[,5]<-as.numeric(model_summ[,5])
 for( i in 1:length(model_summ) ){
     cat('.')  
-    query <- sprintf('INSERT INTO ModelSumm VALUES (\'%s\',\'%s\',\'%s\',\'%s\');',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4])
+    query <- sprintf('INSERT INTO ModelSumm VALUES (\'%s\',\'%s\',\'%s\',\'%s\',\'%s\');',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4],model_summ[i,5])
     query = dbSendQuery(db, query )
 }
 
