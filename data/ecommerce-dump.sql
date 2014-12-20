@@ -138,11 +138,12 @@ group by P.ProductID;
 
 
 
-Insert into `TopResum` (top,CategoryName, ProductID)
+Insert into `TopResum` (top,CategoryName, ProductID,ProductName)
 SELECT 
 	COUNT(t2.Quantity) AS top,
     t1.CategoryID As CategoryName,
-    t1.ProductID As ProductID
+    t1.ProductID As ProductID,
+    t1.ProductName
 FROM TopProducts t1 
 JOIN TopProducts t2 ON t1.Quantity < t2.Quantity OR (t1.Quantity=t2.Quantity and t1.ProductID = t2.ProductID) 
 GROUP BY t1.ProductID, t1.Quantity 
@@ -166,7 +167,7 @@ create table temp (
     INSERT INTO temp (OrderDate, Quantity)
 	select 
 		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
+        sum(D.Quantity) as Quantity
 		from order_details D, products P, orders O
 		where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
 		P.ProductID in(select ProductID from TopResum where top=rank)
@@ -269,7 +270,7 @@ create table temp (
     INSERT INTO temp (OrderDate, Quantity)
 	select 
 		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
+        sum(D.Quantity) as Quantity
 		from order_details D, products P, orders O
 		where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
 		P.ProductID not in(select ProductID from TopResum where top=rank) and
@@ -369,7 +370,7 @@ create table temp (
     INSERT INTO temp (OrderDate, Quantity)
 	select 
 		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
+        sum(D.Quantity) as Quantity
 		from order_details D, products P, orders O
 		where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
 		P.ProductID not in(select ProductID from TopResum where top=rank) and
@@ -382,56 +383,56 @@ DELIMITER ;
 
 
 call table3(1);
-INSERT INTO table1_top1 (OrderDate,Quantity) 
+INSERT INTO table3_top1 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(2);
-INSERT INTO table1_top2 (OrderDate,Quantity) 
+INSERT INTO table3_top2 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
     
 call table3(3);
-INSERT INTO table1_top3 (OrderDate,Quantity) 
+INSERT INTO table3_top3 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(4);
-INSERT INTO table1_top4 (OrderDate,Quantity) 
+INSERT INTO table3_top4 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(5);
-INSERT INTO table1_top5 (OrderDate,Quantity) 
+INSERT INTO table3_top5 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(6);
-INSERT INTO table1_top6 (OrderDate,Quantity) 
+INSERT INTO table3_top6 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(7);
-INSERT INTO table1_top7 (OrderDate,Quantity) 
+INSERT INTO table3_top7 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;
 
 call table3(8);
-INSERT INTO table1_top8 (OrderDate,Quantity) 
+INSERT INTO table3_top8 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
@@ -439,7 +440,7 @@ INSERT INTO table1_top8 (OrderDate,Quantity)
     
     
 call table3(9);
-INSERT INTO table1_top9 (OrderDate,Quantity) 
+INSERT INTO table3_top9 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity
@@ -447,7 +448,7 @@ INSERT INTO table1_top9 (OrderDate,Quantity)
     
     
 call table3(10);
-INSERT INTO table1_top10 (OrderDate,Quantity) 
+INSERT INTO table3_top10 (OrderDate,Quantity) 
 	select 
 		OrderDate As OrderDate,
         Quantity As Quantity

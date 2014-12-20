@@ -316,17 +316,26 @@ for (i in top:1){
 }
 
 # Send to db predictions for next month in top 10
-prediction<-round(predict_sales)
+predict_sales[,1]<-as.numeric(predict_sales[,1])
+predict_sales[,2]<-as.numeric(predict_sales[,2])
+predict_sales[,3]<-as.numeric(predict_sales[,3])
+predict_sales[,4]<-as.numeric(predict_sales[,4])
+predict_sales[,5]<-as.numeric(predict_sales[,5])
+prediction<-predict_sales
 for( i in 1:length(prediction) ){
   cat('.')  
   query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
   query = dbSendQuery(db, query )
 }
+write.table(prediction, "predictsales.txt", sep="\t")
 
 # Save summary of selected models in a table
+model_summ[,1]<-as.numeric(model_summ[,1])
+model_summ[,1]<-as.numeric(model_summ[,2])
+model_summ[,1]<-as.numeric(model_summ[,4])
 for( i in 1:length(model_summ) ){
     cat('.')  
-    query <- sprintf('INSERT INTO ModelSumm VALUES (%f,%f,%f,%f);',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4])
+    query <- sprintf('INSERT INTO ModelSumm VALUES (\'%s\',\'%s\',\'%s\',\'%s\');',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4])
     query = dbSendQuery(db, query )
 }
 
@@ -341,3 +350,4 @@ for( i in 1:length(Graph_data) ){
   query = dbSendQuery(db, query )
 }
 
+dbDisconnect(db)

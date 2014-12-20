@@ -527,7 +527,8 @@ drop table if exists TopResum;
 create table TopResum(
 	`top` int(11),
   `CategoryName` varchar(15),
-  `ProductID` int (11)
+  `ProductID` int (11),
+    `ProductName` varchar(40) DEFAULT NULL
 );
 
 
@@ -569,6 +570,11 @@ drop table if exists ModelSumm;
 create table ModelSumm(
 	`Ranking` int(11),
 	`ProdID` int (11),
-	`Model` float(5),
-  `ValidatioRMSE` float(5)
+	`Model` varchar(15),
+  `ValidationRMSE` float(5)
 );
+
+###INDEX with the most used tables:
+CREATE INDEX Products ON Products (ProductID);
+CREATE INDEX Orders ON Orders (OrderID);
+CREATE INDEX OrDetails ON order_details (ProductID);
