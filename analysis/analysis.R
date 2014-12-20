@@ -278,6 +278,10 @@ predict_sales<-matrix(0,top,5)
 predict_sales<-as.data.frame(predict_sales)
 names(predict_sales)<-c("Ranking","ProdId","Predicted","Max_Predict","Min_Predict")
 
+# Create variable to summarize model
+model_summ<-matrix(0,top,4)
+model_summ<-as.data.frame(model_summ)
+names(model_summ)<-c("Ranking","ProdId","Model","Validation RMSE (%)")
 
 
 for (i in top:1){
@@ -300,19 +304,29 @@ for (i in top:1){
     tests <-data[dim(data)[1],3:ncol(data)] #data for last day, to predict actual future sales
     if (selected %in% 3:4){tests<-as.matrix(tests[-1])} # format for Lasso and Ridge
     
-    
     predict_sales[i,]<-c(i,top_prods[i,2],do_predict(model,tests,selected))
     
-# table <- summary(model)$coefficients if we wanted coefficients
-
+    # Save info about model
+    type<-c("Linear Regression","Poisson GLM","Poisson GLM Lasso","Poisson GLM Ridge")
+    model_summ[i,]<-c(i,top_prods[i,2],type[selected],round(RMSE*100,1))
+    
 }
 
+# Send to db predictions for next month in top 10
 prediction<-round(predict_sales)
 for( i in 1:length(prediction) ){
   cat('.')  
   query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
   query = dbSendQuery(db, query )
 }
+
+# Save summary of selected models in a table
+for( i in 1:length(model_summ) ){
+    cat('.')  
+    query <- sprintf('INSERT INTO ModelSumm VALUES (%f,%f,%f,%f);',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4])
+    query = dbSendQuery(db, query )
+}
+
 
 # Top 1 model is in memory once finished the loop
 # Create past time series with predictions and observations for this top product
