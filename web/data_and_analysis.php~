@@ -27,6 +27,12 @@ limit 10";
 	query_and_print_table($query);
 	echo "Returns the 10 products that have made most sales in the ";
 
+	//GRAPH1
+	$query = "select * from ecommerce.PredictionStock";
+	$title = "Works?";
+	query_and_print_graph($query,$title,"Quantity");
+	echo "The graph shows the ranking of the 10 products with more sales in monatary value";
+
 	
 ?>
 		</div>
@@ -38,8 +44,8 @@ limit 10";
 	query_and_print_series($query,$title,"probability of success of coef 3");
 	echo "Comment 1";
 
-	$query = "SELECT * FROM ecommerce.analysis_estimates";
-	$title = "Parameter Estimates";
+	$query = "SELECT * FROM ecommerce.ModelSumm";
+	$title = "Summary of models per top10 product";
 	query_and_print_table($query,$title);
 	echo "Comment 2";
 ?>
