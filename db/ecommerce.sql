@@ -498,7 +498,7 @@ create table table3_top7 (
 ##8st
 drop table if exists table3_top8;
 
-create table table3_top5 (
+create table table3_top8 (
 	OrderDate  date,
     Quantity int(225)
 );

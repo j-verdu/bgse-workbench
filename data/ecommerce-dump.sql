@@ -126,11 +126,11 @@ UNLOCK TABLES;
 
 ##Insert analysis data
 
-LOCK TABLES `TopResum` WRITE;
+#LOCK TABLES `TopResum` WRITE;
 
 INSERT INTO `TopResum` VALUES ('Top1',60),('Top2',59),('Top3',31),('Top4',56),('Top5',16);
 
-UNLOCK TABLES;
+#UNLOCK TABLES;
 
 
 

@@ -3,7 +3,6 @@
 #################################################################
 
 library(RMySQL)
-library(ggplot2)
 library(glmnet)
 
 #########################
@@ -222,9 +221,9 @@ do_predict<-function(model,tests,selected){
         
     } else if (selected==1) { # simple linear regression
         preds<-predict(model, tests, interval="confidence")
-        fit <- preds$fit[1]
-        lwr<-preds$fit[2]
-        upr<-preds$fit[3]
+        fit <- preds[1]
+        lwr<-preds[2]
+        upr<-preds[3]
     } else { # GLM Lasso or GLM Ridge
         preds<-predict(model,tests,type="response",se.fit=TRUE)
         fit<-preds

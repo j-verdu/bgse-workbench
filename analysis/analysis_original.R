@@ -4,7 +4,6 @@ library(RMySQL)
 db = dbConnect(MySQL(), user='root', password='root', dbname='ecommerce', host='localhost')
 
 result = dbSendQuery(db, "SELECT * from analysis_data_table")
-result2 = dbSendQuery(db, "SELECT * from table1_top1")
 
 data = fetch(result, n=-1)
 
