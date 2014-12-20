@@ -30,7 +30,7 @@ limit 10";
 	//GRAPH1
 	$query = "select * from ecommerce.PredictionStock";
 	$title = "Works?";
-	query_and_print_graph($query,$title,"Quantity");
+	query_and_print_table($query,$title,"Quantity");
 	echo "Can you see something?";
 
 	
