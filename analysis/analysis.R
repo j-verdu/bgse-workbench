@@ -274,7 +274,7 @@ days_forecast<-30 # the output will be forecast sales for a product along next
                 # 'days_forescast' days
 
 top_prods = dbGetQuery(db, "SELECT * from TopResum")
-
+top_prods[,3]<-as.character(top_prods[,3])
 
 # Create variable to include predicted sales for all top products
 predict_sales<-matrix(0,top,5)
@@ -282,9 +282,9 @@ predict_sales<-as.data.frame(predict_sales)
 names(predict_sales)<-c("Ranking","ProdId","Predicted","Max_Predict","Min_Predict")
 
 # Create variable to summarize model
-model_summ<-matrix(0,top,4)
+model_summ<-matrix(0,top,5)
 model_summ<-as.data.frame(model_summ)
-names(model_summ)<-c("Ranking","ProdId","Model","Validation RMSE (%)")
+names(model_summ)<-c("Ranking","ProdId","Prod.Name","Model","Validation RMSE (%)")
 
 
 for (i in top:1){
@@ -307,11 +307,11 @@ for (i in top:1){
     tests <-data[dim(data)[1],3:ncol(data)] #data for last day, to predict actual future sales
     if (selected %in% 3:4){tests<-as.matrix(tests[-1])} # format for Lasso and Ridge
     
-    predict_sales[i,]<-c(i,top_prods[i,2],do_predict(model,tests,selected))
+    predict_sales[i,]<-c(i,top_prods[i,3],do_predict(model,tests,selected))
     
     # Save info about model
     type<-c("Linear Regression","Poisson GLM","Poisson GLM Lasso","Poisson GLM Ridge")
-    model_summ[i,]<-c(i,top_prods[i,2],type[selected],round(RMSE*100,1))
+    model_summ[i,]<-c(i,top_prods[i,3],top_prods[i,4],type[selected],round(RMSE*100,1))
     
 }
 
@@ -327,15 +327,15 @@ for( i in 1:length(prediction) ){
   query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
   query = dbSendQuery(db, query )
 }
-write.table(prediction, "predictsales.txt", sep="\t")
+write.table(prediction, "predictsales.txt", sep="\t") # check
 
 # Save summary of selected models in a table
 model_summ[,1]<-as.numeric(model_summ[,1])
-model_summ[,1]<-as.numeric(model_summ[,2])
-model_summ[,1]<-as.numeric(model_summ[,4])
+model_summ[,2]<-as.numeric(model_summ[,2])
+model_summ[,5]<-as.numeric(model_summ[,5])
 for( i in 1:length(model_summ) ){
     cat('.')  
-    query <- sprintf('INSERT INTO ModelSumm VALUES (\'%s\',\'%s\',\'%s\',\'%s\');',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4])
+    query <- sprintf('INSERT INTO ModelSumm VALUES (\'%s\',\'%s\',\'%s\',\'%s\',\'%s\');',model_summ[i,1],model_summ[i,2],model_summ[i,3],model_summ[i,4],model_summ[i,5])
     query = dbSendQuery(db, query )
 }
 
