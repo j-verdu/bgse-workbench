@@ -28,10 +28,14 @@ limit 10";
 	echo "This table shows us the relation of the top-ten products with their ID and the categories they belong.";
 
 	//GRAPH1
-	$query = "select * from ecommerce.PredictionStock";
+	$query= "select * from ecommerce.PredictionStock";
 	$title = "Works?";
-	query_and_print_graph($query,$title,"Quantity");
+	query_and_print_table($query,$title,"Quantity");
 	echo "Can you see something?";
+
+
+	$query = "select * from ecommerce.OrderAdvertise";
+	query_and_print_table($query);
 
 	
 ?>
