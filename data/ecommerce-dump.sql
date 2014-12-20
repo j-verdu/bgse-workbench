@@ -127,7 +127,7 @@ UNLOCK TABLES;
 ##Insert analysis data
 
 
-INSERT INTO `TopCategories` (Quantity,ProductID,CategoryID)
+INSERT INTO `TopProducts` (Quantity,ProductID,CategoryID)
 	select 
         sum(D.Quantity*D.UnitPrice) As Quantity,
         P.ProductID As ProductID,
@@ -143,8 +143,8 @@ SELECT
 	COUNT(t2.Quantity) AS top,
     t1.CategoryID As CategoryName,
     t1.ProductID As ProductID
-FROM TopCategories t1 
-JOIN TopCategories t2 ON t1.Quantity < t2.Quantity OR (t1.Quantity=t2.Quantity and t1.ProductID = t2.ProductID) 
+FROM TopProducts t1 
+JOIN TopProducts t2 ON t1.Quantity < t2.Quantity OR (t1.Quantity=t2.Quantity and t1.ProductID = t2.ProductID) 
 GROUP BY t1.ProductID, t1.Quantity 
 ORDER BY t1.Quantity DESC, t1.ProductID DESC;
 

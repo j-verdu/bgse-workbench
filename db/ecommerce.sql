@@ -554,9 +554,9 @@ create table GraphPredictions(
   `lwr` float(5)
 );
 
-drop table if exists TopCategories;
+drop table if exists TopProducts;
 
-create table TopCategories(
+create table TopProducts(
 	`Quantity` int(11),
   `ProductID` int (11),
   `CategoryID` float(5)
