@@ -100,8 +100,6 @@ read_gen_data<-function(i,db,days_forecast){
     
     ##put information in resum:
     resum$quantity_i<-resumtable(resum$days,sales_i$days,sales_i$Quantity)
-    resum$quantity_scat<-resumtable(resum$days,sales_scat$days,sales_scat$Quantity)
-    resum$quantity_cats<-resumtable(resum$days,sales_cats$days,sales_cats$Quantity)
     
     ##Y - Creation on the dependent variable:
     resum$Y_salesNxtMonth<-Yfunction(resum$quantity_i,days_forecast) # sales in posterior xx days 
@@ -121,32 +119,8 @@ read_gen_data<-function(i,db,days_forecast){
     ##X5=Sales of the day of other products of same category:
     resum$X5quantity_scat<-quantitiescate(resum$days,sales_scat$days,sales_scat$Quantity)
     
-    ##X6=Sales of last week of other products of same category:
-    resum$X6_SalesWeek_SameCat <-sumquantities(resum$quantity_scat,7)
-    
-    ##X7=Sales of last month of other products of same category:
-    resum$X7_SalesMonth_SameCat <- sumquantities(resum$quantity_scat,30)
-    
-    ##X8=Sales of last trimester of other products of same category:
-    resum$X8_SalesTrimes_SameCat <- sumquantities(resum$quantity_scat,90)
-    
-    ##X9=Sales of last semester of other products of same category:
-    resum$X9_SalesSemes_SameCat <- sumquantities(resum$quantity_scat,182)
-    
-    ##X10=Sales of the day of other products of other categories:
-    resum$X10quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quantity)
-    
-    ##X11=Sales of last week of other products of other categories:
-    resum$X11_SalesWeek_OthCat <-sumquantities(resum$quantity_cats,7)
-    
-    ##X12=Sales of last month of other products of other categories:
-    resum$X12_SalesMonth_OthCat <- sumquantities(resum$quantity_cats,30)
-    
-    ##X13=Sales of last trimester of other products of other categories:
-    resum$X13_SalesTrimes_OthCat <- sumquantities(resum$quantity_cats,90)
-    
-    ##X14=Sales of last semester of other products of same category:
-    resum$X14_SalesSemes_SameCat <- sumquantities(resum$quantity_cats,182)
+    ##X6=Sales of the day of other products of other categories:
+    resum$X6quantity_cat<-quantitiescate(resum$days,sales_cats$days,sales_cats$Quantity)
     
     return(resum)
 }
@@ -209,28 +183,23 @@ model_selection<-function (DATA) {
 # Predict a single value with its 95% confidence interval if possible
 do_predict<-function(model,tests,selected){
     
-    ##Predict with confidence interval
-    if (selected==2){ #GLM
-        preds<-predict(model,tests,type = "link", se.fit=TRUE)
-        critval <- qnorm(0.975) ##  95% Confidence Interval
+    preds<-predict(model,tests,type="response",interval="predict",se.fit=TRUE)
+
+    ##Critical Values
+    if (selected==2){ # GLM 
+        critval <- 1.96 ## approx 95% CI
         upr <- preds$fit + (critval * preds$se.fit)
         lwr <- preds$fit - (critval * preds$se.fit)
         fit <- preds$fit
-        fit <- model$family$linkinv(fit)
-        upr <- model$family$linkinv(upr)
-        lwr <- model$family$linkinv(lwr)
-        
-    } else if (selected==1) { # simple linear regression
-        preds<-predict(model, tests, interval="confidence")
-        fit <- preds$fit[1]
-        lwr<-preds$fit[2]
-        upr<-preds$fit[3]
-    } else { # GLM Lasso or GLM Ridge
-        preds<-predict(model,tests,type="response",se.fit=TRUE)
+    } else if (selected==1){
+      fit<-preds$fit[1]
+      lwr<-preds$fit[2]
+      upr<-preds$fit[3]
+    } else {# GLM or Lasso
         fit<-preds
-        upr<-NA # confidence interval do not apply to Lasso or Ridge, already optimized lambda
+        upr<-NA
         lwr<-NA
-    } 
+    }
     
     return(c(max(0,fit),max(0,upr),max(0,lwr)))
 }
@@ -298,7 +267,7 @@ for (i in top:1){
     selected<-res[[3]] #1:linear, 2:GLM, 3:GLMLasso, 4:GLM Ridge
 
     # Predict next 'days_forecast' sales for last day
-    tests <-data[dim(data)[1],3:ncol(data)] #data for last day, to predict actual future sales
+    tests <-data[dim(data)[1],3:9] #data for last day, to predict actual future sales
     if (selected %in% 3:4){tests<-as.matrix(tests[-1])} # format for Lasso and Ridge
     
     
