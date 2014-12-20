@@ -38,8 +38,8 @@ limit 10";
 	query_and_print_series($query,$title,"probability of success of coef 3");
 	echo "Comment 1";
 
-	$query = "SELECT * FROM ecommerce.ModelSumm";
-	$title = "Summary of models per top10 product";
+	$query = "SELECT * FROM ecommerce.analysis_estimates";
+	$title = "Parameter Estimates";
 	query_and_print_table($query,$title);
 	echo "Comment 2";
 ?>
