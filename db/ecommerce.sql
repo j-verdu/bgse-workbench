@@ -575,6 +575,6 @@ create table ModelSumm(
 );
 
 ###INDEX with the most used tables:
-CREATE INDEX Products ON Products (ProductID);
-CREATE INDEX Orders ON Orders (OrderID);
+CREATE INDEX Products ON products (ProductID);
+CREATE INDEX Orders ON orders (OrderID);
 CREATE INDEX OrDetails ON order_details (ProductID);

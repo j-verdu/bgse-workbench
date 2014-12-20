@@ -63,15 +63,20 @@ function show_content(optionsId) {
 
 			<p>
 			This project aims to predict actual stock needs for top-ten sales products, by predicting next month sales.
-            
+<p>
+  <p>          
 First we are going to obtain the sales of the top-ten products. This data is obtained via Procedures, with the goal of making it as dynamic as possible. Other two types of procedures are made to export data for the analysis. This data will be imported in R in order to do the analysis.
+<p>
 
 EXPLAIN ANALYSIS
-
-
+<p>
+<p>
 Next R exports results of the prediction of each of the top-ten products with upper and lower bound of possible error. Through SQL we study if we have enough stock of the products given our prediction.
-
-So finally for each product, it shows the prediction, the actual stock, and then if there is overstock, the supplier contact. On the contrary, if there is overstock, the best client for this product according to past sales.
+<p>
+<p>
+Finally for each product, it shows the prediction, the actual stock, and then if there is overstock, the supplier contact. On the contrary, if there is overstock, the best client for this product according to past sales.
+<p>
+<p>
             For each product, the predictive model is the one with less validation error, chosen from: simple linear regression, GLM, GLM Poisson Lasso, GLM Poisson Ridge. Model features are different time horizon sales for the particular product, together with same features but applied to the overall of other products in its category, and to the overall of other products of other categories.
 			</p>
 		</div>	
