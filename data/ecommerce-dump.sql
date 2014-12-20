@@ -153,10 +153,6 @@ ORDER BY t1.Quantity DESC, t1.ProductID DESC;
 #### Top tables
 
 
-select * from TopCategories;
-select* from TopResum;
-
-
 INSERT INTO table2_top1 (OrderDate,Quantity)
 select 
 		O.OrderDate as OrderDate,
