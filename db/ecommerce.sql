@@ -559,7 +559,8 @@ drop table if exists TopProducts;
 create table TopProducts(
 	`Quantity` int(11),
   `ProductID` int (11),
-  `CategoryID` float(5)
+  `CategoryID` float(5),
+  `ProductName` varchar(40) DEFAULT NULL
 );
 
 
