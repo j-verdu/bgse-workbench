@@ -205,9 +205,9 @@ do_predict<-function(model,tests,selected){
 }
 
 # Generates data for times series graph to check model behaviour
-gen_graph_data<-function(DATA,model,selected){
+gen_graph_data<-function(dates,DATA,model,selected){
     
-    Graph<- data.frame(date=as.Date(DATA[,1],origin = "1970-01-01"),Observed=DATA[,3])
+    Graph<- data.frame(date=as.Date(dates,origin = "1970-01-01"),Observed=DATA[,1])
     if (selected %in% 3:4){
         DATA<-as.matrix(DATA)
         prediction<-predict(model,as.matrix(DATA[,-1]),s="lambda.min")
@@ -277,7 +277,7 @@ for (i in top:1){
 
 }
 
-predict_sales<-round(predict_sales)
+prediction<-round(predict_sales)
 for( i in 1:length(prediction) ){
   cat('.')  
   query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
@@ -286,31 +286,11 @@ for( i in 1:length(prediction) ){
 
 # Top 1 model is in memory once finished the loop
 # Create past time series with predictions and observations for this top product
-
-Graph_data<-gen_graph_data(DATA,model,selected)
-dbWriteTable(conn = con, name = 'graph_data', value = as.data.frame(Graph_data))
-
-
-write.table(Graph, "graphlines.txt", sep="\t")
-
-## FROM HERE TO BE DONE STILL
-for( i in 1:10 ){
-  query <- sprintf('INSERT INTO analysis_estimates VALUES (\'coef%s\',%f,%f,%f,%f);',i,table[i,1],table[i,2],table[i,3],table[i,4])
+dates<-data[max_backwards:nrow(data)-days_forecast,1]
+Graph_data<-gen_graph_data(dates,DATA,model,selected)
+for( i in 1:length(Graph_data) ){
+  cat('.')  
+  query <- sprintf('INSERT INTO GraphPredictions VALUES (%f,%f,%f,%f,%f);',Graph_data[i,1],Graph_data[i,2],Graph_data[i,3],Graph_data[i,4],Graph_data[i,5])
   query = dbSendQuery(db, query )
-}
-
-#
-inv.link <- function(eta){ exp(eta)/(1+exp(eta))}
-beta     <- coef(logit)
-c=3
-x <- seq(min(X[,c]),max(X[,c]),0.01)
-p <- rep(0,length(x))
-for( i in 1:length(x) ){
-    cat('.')
-    eta  <- beta[1] + x[i]*beta[1+c] + colMeans(X[,setdiff(1:10,c)]) %*% beta[ 1+setdiff(1:10,c) ]
-    p[i] <- inv.link(eta)
- 
-    query <- sprintf('INSERT INTO analysis_prob VALUES (\'coef%s\',%f,%f);',c,x[i],p[i])
-    query = dbSendQuery(db, query )
 }
 
