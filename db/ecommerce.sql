@@ -573,3 +573,8 @@ create table ModelSumm(
 	`Model` varchar(15),
   `ValidationRMSE` float(5)
 );
+
+###INDEX with the most used tables:
+CREATE INDEX Products ON Products (ProductID);
+CREATE INDEX Orders ON Orders (OrderID);
+CREATE INDEX OrDetails ON order_details (ProductID);
