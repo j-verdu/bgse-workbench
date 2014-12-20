@@ -224,37 +224,51 @@ do_predict<-function(model,tests,selected){
         
     } else if (selected==1) { # simple linear regression
         preds<-predict(model, tests, interval="confidence")
-        fit <- preds[1]
-        lwr<-preds[2]
-        upr<-preds[3]
+          fit <- preds[1]
+          lwr<-preds[2]
+          upr<-preds[3] 
+        
+        
     } else { # GLM Lasso or GLM Ridge
         preds<-predict(model,tests,type="response",se.fit=TRUE)
         fit<-preds
         upr<-NA # confidence interval do not apply to Lasso or Ridge, already optimized lambda
         lwr<-NA
     } 
-    
+      
     return(c(max(0,fit),max(0,upr),max(0,lwr)))
 }
 
 # Generates data for times series graph to check model behaviour
 gen_graph_data<-function(dates,DATA,model,selected){
     
-    Graph<- data.frame(date=as.Date(dates,origin = "1970-01-01"),Observed=DATA[,1])
-    if (selected %in% 3:4){
-        DATA<-as.matrix(DATA)
-        prediction<-predict(model,as.matrix(DATA[,-1]),s="lambda.min")
-        Graph$Predicted<-prediction
-        # In that case we don't include upr and lwr values
-    } else if (selected<3){
-        predictionsYs<-predict(model,DATA,type="response",interval="predict",se.fit=TRUE)
-        Graph$Predicted<-predictionsYs$fit
-        critval <- 1.96 ## approx 95% CI
-        for (i in 1:nrow(Graph)){
-            Graph$upr[i]<-predictionsYs$fit[i] + (critval * predictionsYs$se.fit[i])
-            Graph$lwr[i]<-predictionsYs$fit[i] - (critval * predictionsYs$se.fit[i])
-        }
-    }
+    observed<- DATA[,1]
+    
+    if (selected %in% 3:4){DATA<-as.matrix(tests[-1])} # format for Lasso and Ridge
+    
+    if (selected==2){ #GLM
+      preds<-predict(model,DATA,type = "link", se.fit=TRUE)
+      critval <- qnorm(0.975) ##  95% Confidence Interval
+      upr <- preds$fit + (critval * preds$se.fit)
+      lwr <- preds$fit - (critval * preds$se.fit)
+      fit <- preds$fit
+      fit <- model$family$linkinv(fit)
+      upr <- model$family$linkinv(upr)
+      lwr <- model$family$linkinv(lwr)
+      
+    } else if (selected==1) { # simple linear regression
+      preds<-predict(model, DATA, interval="confidence")
+        fit <- preds[,1]
+        lwr<-preds[,2]
+        upr<-preds[,3]
+    } else { # GLM Lasso or GLM Ridge
+      preds<-predict(model,DATA,type="response",se.fit=TRUE)
+      fit<-preds
+      upr<-NA # confidence interval do not apply to Lasso or Ridge, already optimized lambda
+      lwr<-NA
+    } 
+    Graph<-data.frame(date=as.Date(dates,origin = "1970-01-01"),Observed=observed,Predicted=fit,
+                      Upr_Pred=upr,Lwr_Pred=lwr)
     
     return(Graph)
 }

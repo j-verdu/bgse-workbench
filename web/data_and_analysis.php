@@ -39,15 +39,21 @@ limit 10";
 		<div id="analysis" style="display: none">
 			<h2>Analysis</h2>
 <?php
-	$query = "SELECT x,p FROM ecommerce.analysis_prob WHERE coef='coef3'";
-	$title = "Probability of Success";
-	query_and_print_series($query,$title,"probability of success of coef 3");
-	echo "Comment 1";
-
 	$query = "SELECT * FROM ecommerce.ModelSumm";
 	$title = "Summary of models per top10 product";
 	query_and_print_table($query,$title);
 	echo "This table shows the type of model used to predict one-month sales of every product, together with validation error in percercent.";
+
+	$query = "SELECT Date,Observed FROM ecommerce.GraphPredictions";
+	$title = "Sales top1 product";
+	query_and_print_series($query,$title,"Next-month sales");
+	echo "Computed values from observed daily data";
+
+	$query = "SELECT Date,PredictionX FROM ecommerce.GraphPredictions";
+	$title = "Predicted Sales top1 product";
+	query_and_print_series($query,$title,"Next-month sales");
+	echo "Predicted values";	
+
 ?>
 		</div>
 <?php
