@@ -27,15 +27,17 @@ limit 10";
 	query_and_print_table($query);
 	echo "This table shows us the relation of the top-ten products with their ID and the categories they belong.";
 
-	//GRAPH1
-	$query= "select * from ecommerce.PredictionStock";
-	$title = "Works?";
-	query_and_print_table($query,$title,"Quantity");
-	echo "Can you see something?";
-
 
 	$query = "select * from ecommerce.OrderAdvertise";
-	query_and_print_table($query);
+	$title = "Stock Recommendation";
+	query_and_print_table($query,$title);
+	echo  "In this table we can see for each product the cases where we should adquire more units or the cases where we should advertise to liquidate the stock";
+
+	//GRAPH1
+	$query = "select * from ecommerce.PredictionStock";
+	$title = "Uncertainty of estimates";
+	query_and_print_table($query,$title);
+	echo "In the following table we can see the incertainty of our predictions, so we can take into account in order to make better decisions.";
 
 	
 ?>
