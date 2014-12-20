@@ -17,7 +17,7 @@
 	$query = "select ProductName , Quantity from ecommerce.TopProducts order by Quantity desc limit 10";
 	$title = "Top products";
 	query_and_print_graph($query,$title,"Quantity");
-	echo "The graph shows the ranking of the 10 products with more sales in monatary value. From this historical records we will try to predict the next month sales in order to have enough stock for the predictions.";
+	echo "The graph shows the ranking of the 10 products with more sales in monetary value. From this historical records we will try to predict the next month sales in order to have enough stock for the predictions.";
 
 	//VALUES Graph 1
 	$query = "select TR.top AS Ranking, TP.ProductID AS ProductID, TP.ProductName As ProductName, TP.CategoryID AS CategoryID
@@ -47,7 +47,7 @@ limit 10";
 	$query = "SELECT * FROM ecommerce.ModelSumm";
 	$title = "Summary of models per top10 product";
 	query_and_print_table($query,$title);
-	echo "Comment 2";
+	echo "This table shows the type of model used to predict one-month sales of every product, together with validation error in percercent.";
 ?>
 		</div>
 <?php
