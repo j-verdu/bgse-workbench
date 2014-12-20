@@ -561,3 +561,13 @@ create table TopProducts(
   `ProductID` int (11),
   `CategoryID` float(5)
 );
+
+
+drop table if exists ModelSumm;
+
+create table TopProducts(
+	`Ranking` int(11),
+	`ProdID` int (11),
+	`Model` float(5),
+  `ValidatioRMSE` float(5)
+);
