@@ -565,7 +565,7 @@ create table TopProducts(
 
 drop table if exists ModelSumm;
 
-create table TopProducts(
+create table ModelSumm(
 	`Ranking` int(11),
 	`ProdID` int (11),
 	`Model` float(5),
