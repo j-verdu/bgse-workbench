@@ -361,7 +361,7 @@ dates<-data[max_backwards:nrow(data)-days_forecast,1]
 Graph_data<-gen_graph_data(dates,DATA,model,selected)
 for( i in 1:length(Graph_data) ){
   cat('.')  
-  query <- sprintf('INSERT INTO GraphPredictions VALUES (%f,%f,%f,%f,%f,%f);',Graph_data[i,1],Graph_data[i,2],Graph_data[i,3],Graph_data[i,4],Graph_data[i,5],dates[i])
+  query <- sprintf('INSERT INTO GraphPredictions VALUES (%f,%f,%f,%f,%f,%f);',Graph_data[i,1],Graph_data[i,2],Graph_data[i,3],Graph_data[i,4],Graph_data[i,5],as.numeric(dates[i]))
   query = dbSendQuery(db, query )
 }
 

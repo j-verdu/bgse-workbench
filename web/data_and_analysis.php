@@ -47,12 +47,12 @@ limit 10";
 	$query = "SELECT IntDay,Observed FROM ecommerce.GraphPredictions";
 	$title = "Sales top1 product";
 	query_and_print_series($query,$title,"Next-month sales");
-	echo "Computed values from observed daily data";
+	echo "Computed values from observed daily data, days as integers from 01-01-1970";
 
 	$query = "SELECT IntDay,PredictionX FROM ecommerce.GraphPredictions";
 	$title = "Predicted Sales top1 product";
 	query_and_print_series($query,$title,"Next-month sales");
-	echo "Predicted values";	
+	echo "Predicted values,  days as integers from 01-01-1970";	
 
 ?>
 		</div>

@@ -44,12 +44,12 @@ limit 10";
 	query_and_print_table($query,$title);
 	echo "This table shows the type of model used to predict one-month sales of every product, together with validation error in percercent.";
 
-	$query = "SELECT Date,Observed FROM ecommerce.GraphPredictions";
+	$query = "SELECT IntDay,Observed FROM ecommerce.GraphPredictions";
 	$title = "Sales top1 product";
 	query_and_print_series($query,$title,"Next-month sales");
 	echo "Computed values from observed daily data";
 
-	$query = "SELECT Date,PredictionX FROM ecommerce.GraphPredictions";
+	$query = "SELECT IntDay,PredictionX FROM ecommerce.GraphPredictions";
 	$title = "Predicted Sales top1 product";
 	query_and_print_series($query,$title,"Next-month sales");
 	echo "Predicted values";	
