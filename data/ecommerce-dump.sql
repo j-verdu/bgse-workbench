@@ -167,7 +167,7 @@ create table temp (
     INSERT INTO temp (OrderDate, Quantity)
 	select 
 		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
+        sum(D.Quantity) as Quantity
 		from order_details D, products P, orders O
 		where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
 		P.ProductID in(select ProductID from TopResum where top=rank)
@@ -270,7 +270,7 @@ create table temp (
     INSERT INTO temp (OrderDate, Quantity)
 	select 
 		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
+        sum(D.Quantity) as Quantity
 		from order_details D, products P, orders O
 		where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
 		P.ProductID not in(select ProductID from TopResum where top=rank) and
@@ -370,7 +370,7 @@ create table temp (
     INSERT INTO temp (OrderDate, Quantity)
 	select 
 		O.OrderDate as OrderDate,
-        sum(D.Quantity*D.UnitPrice) as Quantity
+        sum(D.Quantity) as Quantity
 		from order_details D, products P, orders O
 		where D.ProductID=P.ProductID and D.OrderID=O.OrderID and
 		P.ProductID not in(select ProductID from TopResum where top=rank) and
