@@ -306,7 +306,46 @@ create table table2_top5 (
 );
 
 
+##6st
+drop table if exists table2_top6;
 
+create table table2_top6 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##7st
+drop table if exists table2_top7;
+
+create table table2_top7 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##8st
+drop table if exists table2_top8;
+
+create table table2_top8 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+##9st
+drop table if exists table2_top9;
+
+create table table2_top9 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##10st
+drop table if exists table2_top10;
+
+create table table2_top10 (
+	OrderDate  date,
+    Quantity int(225)
+);
 
 
 ######################
@@ -354,7 +393,46 @@ create table table1_top5 (
     Quantity int(225)
 );
 
+##6st
+drop table if exists table1_top6;
 
+create table table1_top6 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##7st
+drop table if exists table1_top7;
+
+create table table1_top7 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##8st
+drop table if exists table1_top8;
+
+create table table1_top8 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+##9st
+drop table if exists table1_top9;
+
+create table table1_top9 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##10st
+drop table if exists table1_top10;
+
+create table table1_top10 (
+	OrderDate  date,
+    Quantity int(225)
+);
 
 
 ######################
@@ -397,6 +475,48 @@ create table table3_top4 (
 drop table if exists table3_top5;
 
 create table table3_top5 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##6st
+drop table if exists table3_top6;
+
+create table table3_top6 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##7st
+drop table if exists table3_top7;
+
+create table table3_top7 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##8st
+drop table if exists table3_top8;
+
+create table table3_top5 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+
+
+##9st
+drop table if exists table3_top9;
+
+create table table3_top9 (
+	OrderDate  date,
+    Quantity int(225)
+);
+
+##10st
+drop table if exists table3_top10;
+
+create table table3_top10 (
 	OrderDate  date,
     Quantity int(225)
 );
