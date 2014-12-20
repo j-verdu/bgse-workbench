@@ -453,3 +453,58 @@ INSERT INTO table3_top10 (OrderDate,Quantity)
 		OrderDate As OrderDate,
         Quantity As Quantity
 	from temp;  
+
+
+
+DROP PROCEDURE IF EXISTS resum;
+
+DELIMITER //
+CREATE PROCEDURE resum (rank int)
+BEGIN
+drop table if exists sumresults;
+
+create table sumresults (
+	`CustomerID` varchar(5),
+	`ProductID` int(11),
+	`Quantity` float(5));
+
+insert into sumresults (CustomerID,ProductID,Quantity)
+select O.CustomerID AS CustomerID,
+		OD.ProductID As ProductID,
+		sum(OD.UnitPrice) As Quantity
+from orders O, order_details OD
+where O.OrderID=OD.OrderID and OD.ProductID in (select PS.ProductID from PredictionStock PS, products P
+where PS.ProductID=P.ProductID and P.UnitsInStock>PS.Predicted)
+group by OD.ProductID, O.CustomerID;
+
+drop table if exists OrderAdvertise;
+
+create table OrderAdvertise (
+	`Situation` varchar(10),
+	`Addressed` varchar(11),
+	`ProductID` int(11),
+	`StockPredicted` float(5)
+);
+
+insert into OrderAdvertise (Situation,Addressed,ProductID,StockPredicted)
+select 'Order to' As Situation,
+		S.CompanyName As Addressed,
+		PS.ProductID As ProductID,	
+		PS.Predicted As StockPredicted
+from PredictionStock PS, products P, suppliers S
+where PS.ProductID=P.ProductID and P.UnitsInStock<PS.Predicted and S.SupplierID=P.SupplierID
+UNION all
+select 'Advertise to' As Situation,
+	SR.CustomerID As Addressed,
+	PS.ProductID As ProductID,
+	PS.Predicted As StockPredicted
+from PredictionStock PS, products P, (select * from 
+(select * from sumresults order by `ProductID`, Quantity desc, CustomerID) x
+group by `ProductID`) SR
+where PS.ProductID=P.ProductID and P.ProductID=SR.ProductID limit rank;
+
+END
+//
+DELIMITER ;
+
+call resum (10);

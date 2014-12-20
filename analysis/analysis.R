@@ -336,12 +336,12 @@ predict_sales[,3]<-as.numeric(predict_sales[,3])
 predict_sales[,4]<-as.numeric(predict_sales[,4])
 predict_sales[,5]<-as.numeric(predict_sales[,5])
 prediction<-predict_sales
-for( i in 1:length(prediction) ){
+for( i in 1:nrow(prediction) ){
   cat('.')  
   query <- sprintf('INSERT INTO PredictionStock VALUES (%f,%f,%f,%f,%f);',prediction[i,1],prediction[i,2],prediction[i,3],prediction[i,4],prediction[i,5])
   query = dbSendQuery(db, query )
 }
-write.table(prediction, "predictsales.txt", sep="\t") # check
+#write.table(prediction, "predictsales.txt", sep="\t") # check
 
 # Save summary of selected models in a table
 model_summ[,1]<-as.numeric(model_summ[,1])
