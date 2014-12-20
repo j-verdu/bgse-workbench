@@ -147,6 +147,9 @@ read_gen_data<-function(i,db,days_forecast){
     ##X14=Sales of last semester of other products of same category:
     resum$X14_SalesSemes_SameCat <- sumquantities(resum$quantity_cats,182)
     
+    resum<-resum[,-3] #drop quantity_scat
+    resum<-resum[,-3] #drop quantity_cats
+    
     return(resum)
 }
 
@@ -265,7 +268,7 @@ gen_graph_data<-function(dates,DATA,model,selected){
 db = dbConnect(MySQL(), user='root', password='root', dbname='ecommerce', host='localhost')
 
 # Analysis for every top-10 best-sellers product
-top<-5
+top<-10
 max_backwards<-180 #number of backward days needed to calculate features for a particular day
 days_forecast<-30 # the output will be forecast sales for a product along next
                 # 'days_forescast' days
