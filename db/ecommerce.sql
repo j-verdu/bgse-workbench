@@ -527,7 +527,8 @@ drop table if exists TopResum;
 create table TopResum(
 	`top` int(11),
   `CategoryName` varchar(15),
-  `ProductID` int (11)
+  `ProductID` int (11),
+    `ProductName` varchar(40) DEFAULT NULL
 );
 
 

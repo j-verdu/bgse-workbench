@@ -138,11 +138,12 @@ group by P.ProductID;
 
 
 
-Insert into `TopResum` (top,CategoryName, ProductID)
+Insert into `TopResum` (top,CategoryName, ProductID,ProductName)
 SELECT 
 	COUNT(t2.Quantity) AS top,
     t1.CategoryID As CategoryName,
-    t1.ProductID As ProductID
+    t1.ProductID As ProductID,
+    t1.ProductName
 FROM TopProducts t1 
 JOIN TopProducts t2 ON t1.Quantity < t2.Quantity OR (t1.Quantity=t2.Quantity and t1.ProductID = t2.ProductID) 
 GROUP BY t1.ProductID, t1.Quantity 
